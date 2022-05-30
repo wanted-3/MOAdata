@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '.'
 
 export interface DateState {
+  reset: boolean
   date: {
     userDate: {
       startDate: string
@@ -19,6 +20,7 @@ export interface DateState {
 }
 
 const INITIAL_STATE: DateState = {
+  reset: false,
   date: {
     userDate: {
       startDate: '2022-01-01',
@@ -48,11 +50,15 @@ const systemSlice = createSlice({
     setHeartRateDate: (state, action) => {
       state.date.heartRateDate = action.payload
     },
+    setReset: (state, action) => {
+      state.reset = action.payload
+    },
   },
 })
 
-export const { setUserDate, setStepDate, setHeartRateDate } = systemSlice.actions
+export const { setUserDate, setStepDate, setHeartRateDate, setReset } = systemSlice.actions
 
 export default systemSlice.reducer
 
 export const getDate = (state: RootState) => state.dateData.date
+export const getReset = (state: RootState) => state.dateData.reset

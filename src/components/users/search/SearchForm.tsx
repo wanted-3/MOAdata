@@ -1,11 +1,10 @@
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useEffect, useRef, useState, ChangeEvent, FormEvent, MouseEvent } from 'react'
-import { getDate, setUserDate } from 'states/dateData'
-import { MIN_DATE, TODAY } from 'utils/date'
-import styles from './searchForm.module.scss'
+import { getDate, setReset } from 'states/dateData'
 import SearchResult from './SearchResult'
 import { IData } from 'types/userData.d'
+import styles from './searchForm.module.scss'
 
 const userData: IData[] | [] = [
   {
@@ -60,16 +59,13 @@ const Search = () => {
     )
 
     setFilteredData(temp)
-    // setLoginId('')
-    // dispatch(setUserDate({ startDate: MIN_DATE, endDate: TODAY }))
-    // setMemberSeq('')
   }
 
   const onReset = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setLoginId('')
     setMemberSeq('')
-    dispatch(setUserDate({ startDate: MIN_DATE, endDate: TODAY }))
+    dispatch(setReset(true))
     setFilteredData(userData)
   }
 

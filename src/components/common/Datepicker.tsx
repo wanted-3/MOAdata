@@ -6,22 +6,29 @@ import 'react-datepicker/dist/react-datepicker.css'
 import styles from './datepicker.module.scss'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
+import { useAppSelector } from 'hooks/useAppSelector'
+import { getReset, setReset } from 'states/dateData'
+import { END_DATE, formatedDate, MIN_DATE, START_DATE, TODAY, WEEK } from 'utils/date'
 
 interface TempProps {
   dispatchUserDate: ActionCreatorWithPayload<any, string>
 }
-const MIN_DATE = new Date('2022-01-01')
-const TODAY = new Date()
-const WEEK = dayjs(TODAY).subtract(6, 'day').toDate()
-
-const formatedDate = (date: Date) => {
-  return dayjs(date).format('YYYY-MM-DD')
-}
 
 const Datepicker = ({ dispatchUserDate }: TempProps) => {
   const dispatch = useAppDispatch()
-  const [startDate, setStartDate] = useState({ date: MIN_DATE, state: '전체' })
-  const [endDate, setEndDate] = useState({ date: TODAY, state: '전체' })
+  const tmp = useAppSelector(getReset)
+  const [startDate, setStartDate] = useState(START_DATE)
+  const [endDate, setEndDate] = useState(END_DATE)
+
+  useEffect(() => {
+    if (tmp) {
+      setStartDate(START_DATE)
+      setEndDate(END_DATE)
+      dispatch(setReset(false))
+    }
+  }, [dispatch, tmp])
+
+  console.log(startDate, endDate, tmp)
 
   const handleStartDate = (date: Date) => {
     setStartDate({ date, state: formatedDate(date) })
