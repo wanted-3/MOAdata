@@ -28,8 +28,6 @@ const Datepicker = ({ dispatchUserDate }: TempProps) => {
     }
   }, [dispatch, tmp])
 
-  console.log(startDate, endDate, tmp)
-
   const handleStartDate = (date: Date) => {
     setStartDate({ date, state: formatedDate(date) })
   }
@@ -61,36 +59,41 @@ const Datepicker = ({ dispatchUserDate }: TempProps) => {
 
   return (
     <div className={styles.wrap}>
-      <DatePicker
-        className={styles.dateInput}
-        selected={startDate.date}
-        onChange={handleStartDate}
-        startDate={startDate.date}
-        minDate={MIN_DATE}
-        maxDate={TODAY}
-        dateFormat={startDate.state}
-        selectsStart
-      />
-      <span>~</span>
-      <DatePicker
-        className={styles.dateInput}
-        selected={endDate.date}
-        onChange={handleEndDate}
-        endDate={endDate.date}
-        minDate={MIN_DATE}
-        maxDate={TODAY}
-        dateFormat={endDate.state}
-        selectsEnd
-      />
-      <button type='button' className={styles.btn} onClick={handleToday}>
-        오늘
-      </button>
-      <button type='button' className={styles.btn} onClick={handleWeek}>
-        1주일
-      </button>
-      <button type='button' className={styles.btn} onClick={handleTotal}>
-        전체
-      </button>
+      <p className={styles.title}>조회기간</p>
+      <div className={styles.dateInputs}>
+        <DatePicker
+          className={styles.dateInput}
+          selected={startDate.date}
+          onChange={handleStartDate}
+          startDate={startDate.date}
+          minDate={MIN_DATE}
+          maxDate={TODAY}
+          dateFormat={startDate.state}
+          selectsStart
+        />
+        <span>~</span>
+        <DatePicker
+          className={styles.dateInput}
+          selected={endDate.date}
+          onChange={handleEndDate}
+          endDate={endDate.date}
+          minDate={MIN_DATE}
+          maxDate={TODAY}
+          dateFormat={endDate.state}
+          selectsEnd
+        />
+      </div>
+      <div className={styles.buttons}>
+        <button type='button' className={styles.btn} onClick={handleToday}>
+          오늘
+        </button>
+        <button type='button' className={styles.btn} onClick={handleWeek}>
+          1주일
+        </button>
+        <button type='button' className={styles.btn} onClick={handleTotal}>
+          전체
+        </button>
+      </div>
     </div>
   )
 }

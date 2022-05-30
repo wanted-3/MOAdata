@@ -1,7 +1,6 @@
 .searchResult {
-  max-width: 800px;
+  // width: 800px;
   height: 500px;
-  background-color: oldlace;
 
   > p {
     padding: 10px;
@@ -34,7 +33,6 @@
 
     .paginationBtn {
       padding: 5px 10px;
-      background-color: hotpink;
     }
   }
 }

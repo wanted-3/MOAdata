@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom'
 // import { useAppSelector } from 'hooks/useAppSelector'
 
 import styles from './login.module.scss'
-import { CheckIcon } from 'assets/svgs'
 import LOGO from 'assets/logo-w.png'
-import { accessActions, getAccessState } from 'states/accessUser'
+import { accessActions } from 'states/accessUser'
 
 const TEMPORARY = [
   {

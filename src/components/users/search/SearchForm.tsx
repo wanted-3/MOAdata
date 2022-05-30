@@ -1,10 +1,11 @@
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useEffect, useRef, useState, ChangeEvent, FormEvent, MouseEvent } from 'react'
-import { getDate, setReset } from 'states/dateData'
+import { getDate, setReset, setUserDate } from 'states/dateData'
 import SearchResult from './SearchResult'
 import { IData } from 'types/userData.d'
 import styles from './searchForm.module.scss'
+import Datepicker from 'components/common/Datepicker'
 
 const userData: IData[] | [] = [
   {
@@ -24,7 +25,7 @@ const userData: IData[] | [] = [
   },
 ]
 
-const Search = () => {
+const SearchForm = () => {
   const inputIDRef = useRef<HTMLInputElement>(null)
   const [loginId, setLoginId] = useState('')
   const [memberSeq, setMemberSeq] = useState('')
@@ -79,19 +80,30 @@ const Search = () => {
   //   }
   // }, [onSearchSubmit])
   return (
-    <div>
-      <form className={styles.userFormContainer} onSubmit={onSearchSubmit}>
-        <input ref={inputIDRef} type='text' onChange={handleIdChange} value={loginId} placeholder='로그인아이디' />
-        <input type='text' onChange={handleMemberIdChange} value={memberSeq} placeholder='회원번호' />
+    <div className={styles.searchForm}>
+      <div className={styles.formContainer}>
+        <form className={styles.form} onSubmit={onSearchSubmit}>
+          <div className={styles.inputs}>
+            <label htmlFor='loginIdInput'>로그인ID</label>
+            <input id='loginIdInput' ref={inputIDRef} type='text' onChange={handleIdChange} value={loginId} />
+            <label htmlFor='memberIdInput'>회원번호</label>
+            <input id='memberIdInput' type='text' onChange={handleMemberIdChange} value={memberSeq} />
+          </div>
+          <button type='submit' className={styles.submitBtn}>
+            검색
+          </button>
+        </form>
+        <div className={styles.datePicker}>
+          <Datepicker dispatchUserDate={setUserDate} />
+        </div>
+        <button type='button' onClick={onReset} className={styles.resetBtn}>
+          필터초기화
+        </button>
+      </div>
 
-        <button type='submit'>검색</button>
-      </form>
-      <button type='button' onClick={onReset}>
-        필터초기화
-      </button>
       <SearchResult userData={filteredData} />
     </div>
   )
 }
 
-export default Search
+export default SearchForm
