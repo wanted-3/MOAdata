@@ -1,0 +1,49 @@
+@use '/src/styles/constants/colors';
+
+.detailWrapper {
+  width: 700px;
+  height: 700px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border: 1px solid red;
+}
+
+.detail {
+  margin-bottom: 40%;
+  border: 1px solid black;
+
+  .liStyle {
+    display: flex;
+  }
+
+  .item {
+    margin-right: 10px;
+    border: 1px solid yellow;
+  }
+
+  .data {
+    border: 1px solid green;
+  }
+}
+
+.chart {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+.chartWrap {
+  display: flex;
+  align-items: center;
+
+  .lookUp {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid red;
+  }
+
+  .startDate {
+    width: 100px;
+    border: 1px solid black;
+  }
+}
