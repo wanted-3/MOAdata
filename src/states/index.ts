@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import heartRateData from './heartRateData'
-import stepData from './stepData'
+import dateData from './dateData'
 
 export const store = configureStore({
-  reducer: { stepData, heartRateData },
+  reducer: { dateData },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 })

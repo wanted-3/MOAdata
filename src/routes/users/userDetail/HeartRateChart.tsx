@@ -4,39 +4,39 @@ import { useAppSelector } from 'hooks/useAppSelector'
 import { useMemo } from 'react'
 import { useMount } from 'react-use'
 import { getHeartRateApi } from 'services/getData'
-import { temp1, tempData } from 'states/heartRateData'
+// import { temp1, tempData } from 'states/heartRateData'
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
 import styles from './heartRateChart.module.scss'
 
 const HeartRateChart = () => {
   const dispatch = useAppDispatch()
-  const testData = useAppSelector(tempData)
+  // const testData = useAppSelector(tempData)
 
-  useMount(() => {
-    getHeartRateApi().then((res) => {
-      dispatch(temp1(res.data))
-    })
-  })
+  // useMount(() => {
+  //   getHeartRateApi().then((res) => {
+  //     dispatch(temp1(res.data))
+  //   })
+  // })
 
-  const Tdata = useMemo(() => {
-    return testData
-      .map((item) => {
-        return { x: item.crt_ymdt, y: item.avg_beat }
-      })
-      .reverse()
-  }, [testData])
+  // const Tdata = useMemo(() => {
+  //   return testData
+  //     .map((item) => {
+  //       return { x: item.crt_ymdt, y: item.avg_beat }
+  //     })
+  //     .reverse()
+  // }, [testData])
 
-  const maxima = useMemo(() => {
-    return Math.floor(
-      Tdata.map((item) => item.y).reduce((acc, cur) => {
-        return acc + cur
-      }, 0) / Tdata.length
-    )
-  }, [Tdata])
+  // const maxima = useMemo(() => {
+  //   return Math.floor(
+  //     Tdata.map((item) => item.y).reduce((acc, cur) => {
+  //       return acc + cur
+  //     }, 0) / Tdata.length
+  //   )
+  // }, [Tdata])
 
   return (
     <div className={styles.wraper}>
-      <VictoryChart
+      {/* <VictoryChart
         animate={{
           duration: 1000,
           onLoad: { duration: 2000 },
@@ -61,7 +61,7 @@ const HeartRateChart = () => {
       </VictoryChart>
       <div>
         <span>평균 {maxima} bpm</span>
-      </div>
+      </div> */}
     </div>
   )
 }

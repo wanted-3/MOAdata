@@ -1,0 +1,40 @@
+.searchResult {
+  max-width: 800px;
+  height: 500px;
+  background-color: oldlace;
+
+  > p {
+    padding: 10px;
+
+    > mark {
+      color: skyblue;
+      background-color: transparent;
+    }
+  }
+
+  .table {
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    background-color: whitesmoke;
+    border: 1px solid black;
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid black;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+    .paginationBtn {
+      padding: 5px 10px;
+      background-color: hotpink;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@use '/src/styles/constants/colors';
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  padding-right: 40px;
+  font-size: 14px;
+  border: 1px solid black;
+}
+
+.dateInput {
+  width: 80px !important;
+  font-size: 14px;
+  border: none;
+  outline: none;
+}
+
+.startDateInput:focus,
+.endDateInput:focus {
+  font-weight: bold;
+}
+
+.btn {
+  margin-left: 10px;
+  background-color: blue;
+}

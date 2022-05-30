@@ -33,4 +33,4 @@ export const { temp1 } = systemSlice.actions
 
 export default systemSlice.reducer
 
-export const tempData = (state: RootState) => state.heartRateData.value
+// export const tempData = (state: RootState) => state.heartRateData.value
