@@ -2,12 +2,20 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import type { RootState } from '.'
 
-export interface SystemState {
-  value: {}
+export interface StepsState {
+  value: {
+    member_seq: number
+    seq: number
+    steps: number
+    minutes: number
+    distance: number
+    calorie: number
+    crt_ymdt: string
+  }[]
 }
 
-const INITIAL_STATE: SystemState = {
-  value: {},
+const INITIAL_STATE: StepsState = {
+  value: [],
 }
 
 const systemSlice = createSlice({
@@ -16,6 +24,11 @@ const systemSlice = createSlice({
   reducers: {
     temp2: (state, action) => {
       state.value = action.payload
+    },
+    filter: (state, action) => {
+      // const actionData = action.payload.filter((item: string) => userId === item.member_seq)
+      // actionData.forEach((item: any) => {
+      // })
     },
   },
 })

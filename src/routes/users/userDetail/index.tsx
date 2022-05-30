@@ -1,36 +1,42 @@
 import styles from './userDetail.module.scss'
 import 'react-datepicker/dist/react-datepicker.css'
 import ReactDatePicker from 'react-datepicker'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useParams } from 'react-router-dom'
 import { useMount } from 'react-use'
 import { getStepRateApi } from 'services/getData'
-import { temp2, tempData2 } from 'states/stepData'
-import { VictoryBar, VictoryChart, VictoryTheme } from 'victory'
+import { temp2, tempData2, StepsState } from 'states/stepData'
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory'
+import dayjs from 'dayjs'
 
 const title = ['로그인', '회원번호', '가입일시']
+const button = ['오늘', '일주일', '전체']
+interface Graph {
+  crt_ymdt: number
+  steps: string
+}
 
 const UserDetail = () => {
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const minDate = new Date()
   const dispatch = useAppDispatch()
-  const sampleData = [
-    { x: '7일', y: 20 },
-    { x: '14일', y: 15 },
-    { x: '21일', y: 10 },
-    { x: '28일', y: 5 },
-  ]
+  const stepRateData: any = useAppSelector(tempData2)
 
   useMount(() => {
     getStepRateApi().then((res) => dispatch(temp2(res.data)))
   })
+  const sampleData = stepRateData.value.map((item: Graph) => {
+    return { x: item.crt_ymdt, y: item.steps }
+  })
 
-  const stepRateData = useAppSelector(tempData2)
+  const stepSum = sampleData.reduce((accumulator: any, currentObject: any) => {
+    return accumulator + currentObject.y
+  }, 0)
 
-  console.log(stepRateData)
+  const cn1 = stepSum.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
 
   const { userId } = useParams()
   return (
@@ -77,24 +83,29 @@ const UserDetail = () => {
               selectsEnd
             />
           </div>
-          <button type='button'>오늘</button>
-          <button type='button'>일주일</button>
-          <button type='button'>전체</button>
+          {button.map((item) => {
+            return (
+              <button className={styles.dateButton} key={`Cal_Btn-${item}`} type='button'>
+                {item}
+              </button>
+            )
+          })}
         </div>
         <div>
           <h2>걸음수</h2>
           <div className={styles.chart}>
-            <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 20 }}>
-              <VictoryBar
-                style={{
-                  data: { fill: '#c43a31' },
+            <VictoryChart domainPadding={40} height={500} width={450} theme={VictoryTheme.material}>
+              <VictoryAxis
+                tickFormat={(date, idx) => {
+                  return idx === date.length ? '1일' : ''
                 }}
-                data={sampleData}
               />
+              <VictoryAxis dependentAxis tickFormat={(x) => `${x}걸음`} />
+              <VictoryBar data={sampleData} style={{ data: { fill: '#c43a31' } }} />
             </VictoryChart>
           </div>
-          <span>날짜</span>
-          <span>걸음</span>
+          <p>날짜</p>
+          <p>총{cn1}걸음</p>
           <div className={styles.chartWrap}>
             <div className={styles.lookUp}>조회기간</div>
             <ReactDatePicker
@@ -118,9 +129,13 @@ const UserDetail = () => {
               selectsEnd
             />
           </div>
-          <button type='button'>오늘</button>
-          <button type='button'>일주일</button>
-          <button type='button'>전체</button>
+          {button.map((item) => {
+            return (
+              <button className={styles.dateButton} key={`Cal_Btn-${item}`} type='button'>
+                {item}
+              </button>
+            )
+          })}
         </div>
       </div>
     </div>
