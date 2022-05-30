@@ -20,7 +20,7 @@ const systemSlice = createSlice({
   name: 'heartRateData',
   initialState: INITIAL_STATE,
   reducers: {
-    temp: (state, action) => {
+    temp1: (state, action) => {
       state.value = action.payload
     },
     // filter: (state, action) => {
@@ -29,7 +29,7 @@ const systemSlice = createSlice({
   },
 })
 
-export const { temp } = systemSlice.actions
+export const { temp1 } = systemSlice.actions
 
 export default systemSlice.reducer
 

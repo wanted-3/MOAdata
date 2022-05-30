@@ -4,7 +4,7 @@ import { useAppSelector } from 'hooks/useAppSelector'
 import { useMemo } from 'react'
 import { useMount } from 'react-use'
 import { getHeartRateApi } from 'services/getData'
-import { temp, tempData } from 'states/heartRateData'
+import { temp1, tempData } from 'states/heartRateData'
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
 import styles from './heartRateChart.module.scss'
 
@@ -14,7 +14,7 @@ const HeartRateChart = () => {
 
   useMount(() => {
     getHeartRateApi().then((res) => {
-      dispatch(temp(res.data))
+      dispatch(temp1(res.data))
     })
   })
 
@@ -41,7 +41,7 @@ const HeartRateChart = () => {
           duration: 1000,
           onLoad: { duration: 2000 },
         }}
-        width={700}
+        width={400}
         height={400}
       >
         <VictoryAxis
