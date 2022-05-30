@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 import styles from './searchResult.module.scss'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { IData } from 'types/userData.d'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { getHeartRateApi, getStepRateApi } from 'services/getData'
+import { heart, step, reset } from 'states/userData'
 
 interface Props {
   userData: IData[]
@@ -10,15 +13,27 @@ interface Props {
 const SearchResult = ({ userData }: Props) => {
   const [page, setPage] = useState(1)
   const [offset, setOffset] = useState(0)
+  const dispatch = useAppDispatch()
 
   const numOfPeople = userData.length
   const totalPage = Math.ceil(numOfPeople / 10)
+
+  const navigate = useNavigate()
 
   const handleNextPage = () => {
     setPage((prev) => prev + 1)
   }
   const handlePrevPage = () => {
     setPage((prev) => prev - 1)
+  }
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const numberId = Number(e.currentTarget.value)
+
+    dispatch(reset())
+
+    getHeartRateApi(numberId)?.then((res) => res.map((item) => dispatch(heart(item.data))))
+    getStepRateApi(numberId)?.then((res) => res.map((item) => dispatch(step(item.data))))
+    navigate(`${numberId}`)
   }
 
   useEffect(() => {
@@ -48,8 +63,8 @@ const SearchResult = ({ userData }: Props) => {
                 <td>{date}</td>
                 <td>{id}</td>
                 <td>
-                  <button type='button'>
-                    <Link to={`users/${memberSeq}`}>관리</Link>
+                  <button type='button' onClick={handleClick} value={memberSeq}>
+                    관리
                   </button>
                 </td>
               </tr>

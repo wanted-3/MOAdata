@@ -1,41 +1,37 @@
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory'
-import { useAppDispatch } from 'hooks/useAppDispatch'
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from 'victory'
+
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useParams } from 'react-router-dom'
-import { useId, useState } from 'react'
-import { useMount } from 'react-use'
-import { temp2, tempData2, StepsState } from 'states/stepData'
-import { getStepRateApi } from 'services/getData'
-import styles from './stepRateChart.module.scss'
-
-interface Graph {
-  crt_ymdt: number
-  steps: string
-}
+import { getUserData } from 'states/userData'
 
 const StepRateChart = () => {
-  // const dispatch = useAppDispatch()
-  // const stepRateData: any = useAppSelector(tempData2)
+  const stepRateData = useAppSelector(getUserData)
 
-  // useMount(() => {
-  //   getStepRateApi().then((res) => dispatch(temp2(res.data)))
-  // })
-  // const sampleData = stepRateData.value.map((item: Graph) => {
-  //   return { x: item.crt_ymdt, y: item.steps }
-  // })
+  const sampleData = stepRateData.filter.step.map((item) => {
+    return { x: item.crt_ymdt, y: item.steps }
+  })
 
-  // const stepSum = sampleData.reduce((accumulator: any, currentObject: any) => {
-  //   return accumulator + currentObject.y
-  // }, 0)
+  const stepSum = sampleData.reduce((accumulator: any, currentObject: any) => {
+    return accumulator + currentObject.y
+  }, 0)
 
-  // const cn1 = stepSum.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
+  const cn1 = stepSum.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')
 
-  // const { userId } = useParams()
+  const { userId } = useParams()
 
   return (
     <div>
-      {/* <div>
-        <VictoryChart domainPadding={40} height={500} width={450} theme={VictoryTheme.material}>
+      <div>
+        <VictoryChart
+          animate={{
+            duration: 1000,
+            onLoad: { duration: 2000 },
+          }}
+          domainPadding={40}
+          height={500}
+          width={500}
+          theme={VictoryTheme.material}
+        >
           <VictoryAxis
             tickFormat={(date, idx) => {
               return idx === date.length ? '1일' : ''
@@ -46,7 +42,7 @@ const StepRateChart = () => {
         </VictoryChart>
       </div>
       <p>날짜</p>
-      <p>총{cn1}걸음</p> */}
+      <p>총{cn1}걸음</p>
     </div>
   )
 }

@@ -1,16 +1,25 @@
 import styles from './userDetail.module.scss'
 import 'react-datepicker/dist/react-datepicker.css'
-import { useId, useState } from 'react'
+import { useId } from 'react'
 import { useParams } from 'react-router-dom'
 import { useMount } from 'react-use'
 import StepRateChart from './StepRateChart'
-import DatePicker from 'components/userDetail/DatePicker'
 import HeartRateChart from './HeartRateChart'
+import { getHeartRateApi, getStepRateApi } from 'services/getData'
+import { filter, filterTemp2, heart, step } from 'states/userData'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import Datepicker from 'components/common/Datepicker'
 
 const title = ['로그인', '회원번호', '가입일시']
 
 const UserDetail = () => {
+  const dispatch = useAppDispatch()
   const { userId } = useParams()
+
+  // useMount(() => {
+  //   getHeartRateApi(136)?.then((res) => res.map((item) => dispatch(heart(item.data))))
+  //   getStepRateApi(136)?.then((res) => res.map((item) => dispatch(step(item.data))))
+  // })
 
   return (
     <div className={styles.detailWrapper}>
@@ -32,16 +41,17 @@ const UserDetail = () => {
           <h2>심박수or걸음수</h2>
           <div className={styles.chart}>
             <HeartRateChart />
+            <Datepicker dispatchUserDate={filter} />
           </div>
         </div>
         <div>
           <h2>걸음수</h2>
           <div className={styles.chart}>
             <StepRateChart />
+            <Datepicker dispatchUserDate={filterTemp2} />
           </div>
         </div>
       </div>
-      <DatePicker />
     </div>
   )
 }

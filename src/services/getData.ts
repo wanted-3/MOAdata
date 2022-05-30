@@ -1,8 +1,4 @@
 import { axios } from 'hooks/worker'
-import { forEach } from 'lodash'
-
-const heartRateURL = '/data/heartrate_data/heartrate_136_0226_user1.json'
-const stepURL = '/data/step_data/step_136_0226_user1.json'
 
 const step = [
   {
@@ -16,9 +12,9 @@ const step = [
   {
     userId: 328,
     url: [
-      '/data/step_data/step_328_0226_user2.json',
-      '/data/step_data/step_328_0227_user2.json',
-      '/data/step_data/step_328_0228_user2.json',
+      '/data/step_data/step_328_0416_user2.json',
+      '/data/step_data/step_328_0419_user2.json',
+      '/data/step_data/step_328_0420_user2.json',
     ],
   },
   {
@@ -71,10 +67,10 @@ export const getHeartRateApi = (userId: number) => {
 export const getStepRateApi = (userId: number) => {
   const getStep = step.find((it) => it.userId === userId)
 
-  console.log(getStep)
   if (getStep) {
     const itemList = getStep.url.map((it) => axios.get(it))
-    Promise.allSettled(itemList).then((results) => results)
+
+    return Promise.all(itemList).then((results) => results)
   }
 
   return null

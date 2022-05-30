@@ -1,50 +1,40 @@
 import dayjs from 'dayjs'
-import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useMemo } from 'react'
-import { useMount } from 'react-use'
-import { getHeartRateApi, getStepRateApi } from 'services/getData'
-import { getUserData, heart } from 'states/userData'
+import { getUserData } from 'states/userData'
 
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
 import styles from './heartRateChart.module.scss'
 
 const HeartRateChart = () => {
-  const dispatch = useAppDispatch()
   const testData = useAppSelector(getUserData)
 
-  useMount(() => {
-    getHeartRateApi(136)?.then((res) => res.map((item) => dispatch(heart(item.data))))
-  })
-  // useMount(() => {
-  //   getStepRateApi(136)?.then((res) => res.map((item) => dispatch(step(item.data))))
-  // })
+  console.log(testData)
+  const Tdata = useMemo(() => {
+    return testData.filter.heartRate
+      .map((item) => {
+        return { x: item.crt_ymdt, y: item.avg_beat }
+      })
+      .reverse()
+  }, [testData])
 
-  // const Tdata = useMemo(() => {
-  //   return testData
-  //     .map((item) => {
-  //       return { x: item.crt_ymdt, y: item.avg_beat }
-  //     })
-  //     .reverse()
-  // }, [testData])
-
-  // const maxima = useMemo(() => {
-  //   return Math.floor(
-  //     Tdata.map((item) => item.y).reduce((acc, cur) => {
-  //       return acc + cur
-  //     }, 0) / Tdata.length
-  //   )
-  // }, [Tdata])
+  const maxima = useMemo(() => {
+    return Math.floor(
+      Tdata.map((item) => item.y).reduce((acc, cur) => {
+        return acc + cur
+      }, 0) / Tdata.length
+    )
+  }, [Tdata])
 
   return (
-    <div className={styles.wraper}>
-      {/* <VictoryChart
+    <div>
+      <VictoryChart
         animate={{
           duration: 1000,
           onLoad: { duration: 2000 },
         }}
-        width={400}
-        height={400}
+        width={450}
+        height={500}
       >
         <VictoryAxis
           tickFormat={(t, index) => {
@@ -61,9 +51,8 @@ const HeartRateChart = () => {
           data={Tdata}
         />
       </VictoryChart>
-      <div>
-        <span>평균 {maxima} bpm</span>
-      </div> */}
+
+      <p>평균 {maxima} bpm</p>
     </div>
   )
 }

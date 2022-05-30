@@ -41,15 +41,11 @@ const systemSlice = createSlice({
       // 2022-02-26 20:21:31
       // 2022-02-26
     },
+
     step: (state, action) => {
-      state.value.all.step = state.value.all.heartRate.concat(action.payload)
-
-      // console.log(current(state.value.all))
-      // console.log(dayjs('2022-02-26 20:21:31').format('YYYY-MM-DD'))
-
-      // 2022-02-26 20:21:31
-      // 2022-02-26
+      state.value.all.step = state.value.all.step.concat(action.payload)
     },
+
     filter: (state, action) => {
       state.value.filter.heartRate = state.value.all.heartRate.filter((item) => {
         return (
@@ -57,12 +53,23 @@ const systemSlice = createSlice({
           dayjs(item.crt_ymdt).format('YYYY-MM-DD') <= action.payload.endDate
         )
       })
-      console.log(state.value.filter.heartRate)
+    },
+
+    filterTemp2: (state, action) => {
+      state.value.filter.step = state.value.all.step.filter((item) => {
+        return (
+          action.payload.startDate <= dayjs(item.crt_ymdt).format('YYYY-MM-DD') &&
+          dayjs(item.crt_ymdt).format('YYYY-MM-DD') <= action.payload.endDate
+        )
+      })
+    },
+    reset: (state) => {
+      state.value = INITIAL_STATE.value
     },
   },
 })
 
-export const { heart, filter } = systemSlice.actions
+export const { heart, step, filter, filterTemp2, reset } = systemSlice.actions
 
 export default systemSlice.reducer
 
