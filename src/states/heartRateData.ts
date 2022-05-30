@@ -1,13 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
+import dayjs from 'dayjs'
 
 import type { RootState } from '.'
 
 export interface SystemState {
-  value: {}
+  value: {
+    seq: number
+    member_seq: number
+    avg_beat: number
+    crt_ymdt: string
+  }[]
 }
 
 const INITIAL_STATE: SystemState = {
-  value: {},
+  value: [],
 }
 
 const systemSlice = createSlice({
@@ -17,6 +23,9 @@ const systemSlice = createSlice({
     temp: (state, action) => {
       state.value = action.payload
     },
+    // filter: (state, action) => {
+    //   action.payload.filter((item) => dayjs(item.year))
+    // }
   },
 })
 
@@ -24,4 +33,4 @@ export const { temp } = systemSlice.actions
 
 export default systemSlice.reducer
 
-export const tempData = (state: RootState) => state.heartRateData
+export const tempData = (state: RootState) => state.heartRateData.value
