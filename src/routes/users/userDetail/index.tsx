@@ -9,13 +9,11 @@ import { useMount } from 'react-use'
 import { getHeartRateApi } from 'services/getData'
 import { temp, tempData } from 'states/heartRateData'
 import HeartRateChart from './HeartRateChart'
+import DatePicker from 'components/userDetail/DatePicker'
 
 const title = ['로그인', '회원번호', '가입일시']
 
 const UserDetail = () => {
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
-  const minDate = new Date()
   const dispatch = useAppDispatch()
 
   useMount(() => {
@@ -48,34 +46,9 @@ const UserDetail = () => {
           </div>
           <span>날짜</span>
           <span>bpm/걸음</span>
-          <div className={styles.chartWrap}>
-            <div className={styles.lookUp}>조회기간</div>
-            <ReactDatePicker
-              className={styles.startDate}
-              minDate={minDate}
-              dateFormat='전체'
-              selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
-              startDate={startDate}
-              endDate={endDate}
-            />
-            <p className={styles.p}>~</p>
-            <ReactDatePicker
-              className={styles.startDate}
-              selected={endDate}
-              onChange={(date: Date) => setEndDate(date)}
-              dateFormat='전체'
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-              selectsEnd
-            />
-          </div>
-          <button type='button'>오늘</button>
-          <button type='button'>일주일</button>
-          <button type='button'>전체</button>
         </div>
       </div>
+      <DatePicker />
     </div>
   )
 }

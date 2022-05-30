@@ -1,0 +1,21 @@
+.chartWrap {
+  display: flex;
+  align-items: center;
+
+  .lookUp {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid red;
+  }
+
+  .temp {
+    display: flex;
+    width: 300px;
+  }
+
+  .startDate {
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid black;
+  }
+}
