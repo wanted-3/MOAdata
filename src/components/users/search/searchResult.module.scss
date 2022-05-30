@@ -1,13 +1,16 @@
+@use '/src/styles/constants/colors';
 .searchResult {
-  // width: 800px;
   height: 500px;
-
+  background-color: colors.$WHITE;
+  padding: 20px;
+  border-radius: 10px;
   > p {
     padding: 10px;
 
     > mark {
-      color: skyblue;
+      color: colors.$RED;
       background-color: transparent;
+      font-weight: bold;
     }
   }
 
@@ -15,14 +18,23 @@
     width: 100%;
     font-size: 14px;
     text-align: center;
-    background-color: whitesmoke;
-    border: 1px solid black;
+    background-color: colors.$BACKGROUND;
+    thead {
+      border-bottom: 1.5px colors.$HOVER_GRAY solid;
+      font-weight: bold;
+      font-size: 16px;
+    }
 
     th,
     td {
       padding: 10px;
-      border: 1px solid black;
     }
+  }
+  .detailBtn {
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: colors.$HOVER_GRAY;
   }
 
   .pagination {

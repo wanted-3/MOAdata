@@ -1,25 +1,31 @@
+@use 'src/styles/constants/colors';
+
 .searchForm {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: indianred;
+  background-color: colors.$BACKGROUND;
+  width: 1000px;
+  padding: 30px;
 
   .form {
     position: relative;
     height: 150px;
-    background-color: saddlebrown;
+    background-color: colors.$BACKGROUND;
 
     input {
       margin: 10px;
-      border: 1px solid gainsboro;
+      border: 1px solid colors.$NAV_BLACK;
     }
 
     .submitBtn {
       position: absolute;
+      width: 80px;
       right: 0;
       bottom: 0;
       padding: 10px 15px;
-      background-color: pink;
+      border-radius: 10px;
+      background-color: colors.$BLUE;
     }
   }
 

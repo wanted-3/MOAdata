@@ -1,12 +1,16 @@
+@use 'src/styles/constants/colors';
+
 .navBar {
   width: 200px;
-  background-color: aliceblue;
+  background-color: colors.$NAV_BLACK;
 
   ul {
-    background-color: lightblue;
-
     li {
       padding: 15px;
+
+      a {
+        color: colors.$GRAYE;
+      }
     }
   }
 }

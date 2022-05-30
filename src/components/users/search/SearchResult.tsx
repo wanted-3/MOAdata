@@ -48,7 +48,7 @@ const SearchResult = ({ userData }: Props) => {
                 <td>{date}</td>
                 <td>{id}</td>
                 <td>
-                  <button type='button'>
+                  <button className={styles.detailBtn} type='button'>
                     <Link to={`users/${memberSeq}`}>관리</Link>
                   </button>
                 </td>

@@ -1,10 +1,11 @@
+@use 'styles/constants/colors';
+
 .layout {
   display: flex;
   flex-direction: column;
-
   .main {
     display: flex;
     width: 100%;
-    background-color: beige;
+    background-color: colors.$BACKGROUND;
   }
 }

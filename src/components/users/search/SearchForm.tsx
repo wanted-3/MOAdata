@@ -6,6 +6,7 @@ import SearchResult from './SearchResult'
 import { IData } from 'types/userData.d'
 import styles from './searchForm.module.scss'
 import Datepicker from 'components/common/Datepicker'
+import Button from 'components/common/Button'
 
 const userData: IData[] | [] = [
   {
@@ -62,8 +63,7 @@ const SearchForm = () => {
     setFilteredData(temp)
   }
 
-  const onReset = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+  const onReset = () => {
     setLoginId('')
     setMemberSeq('')
     dispatch(setReset(true))
@@ -96,9 +96,7 @@ const SearchForm = () => {
         <div className={styles.datePicker}>
           <Datepicker dispatchUserDate={setUserDate} />
         </div>
-        <button type='button' onClick={onReset} className={styles.resetBtn}>
-          필터초기화
-        </button>
+        <Button title='필터초기화' onClick={onReset} />
       </div>
 
       <SearchResult userData={filteredData} />
