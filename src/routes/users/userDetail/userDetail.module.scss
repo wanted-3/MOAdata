@@ -1,15 +1,15 @@
 @use '/src/styles/constants/colors';
 
 .detailWrapper {
-  width: 700px;
-  height: 700px;
+  width: 800px;
+  height: 800px;
   margin: 0 auto;
   margin-top: 50px;
   border: 1px solid red;
 }
 
 .detail {
-  margin-bottom: 40%;
+  margin-bottom: 20%;
   border: 1px solid black;
 
   .liStyle {
@@ -26,24 +26,28 @@
   }
 }
 
-.chart {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-}
-
-.chartWrap {
+.chartWrapper {
   display: flex;
-  align-items: center;
 
-  .lookUp {
-    width: 150px;
-    padding: 5px;
-    border: 1px solid red;
+  .chart {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
   }
 
-  .startDate {
-    width: 100px;
-    border: 1px solid black;
+  .chartWrap {
+    display: flex;
+    align-items: center;
+
+    .lookUp {
+      width: 150px;
+      padding: 5px;
+      border: 1px solid red;
+    }
+
+    .startDate {
+      width: 100px;
+      border: 1px solid black;
+    }
   }
 }

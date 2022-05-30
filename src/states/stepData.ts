@@ -14,14 +14,14 @@ const systemSlice = createSlice({
   name: 'stepData',
   initialState: INITIAL_STATE,
   reducers: {
-    temp: (state, action) => {
+    temp2: (state, action) => {
       state.value = action.payload
     },
   },
 })
 
-export const { temp } = systemSlice.actions
+export const { temp2 } = systemSlice.actions
 
 export default systemSlice.reducer
 
-export const tempData = (state: RootState) => state.stepData
+export const tempData2 = (state: RootState) => state.stepData
