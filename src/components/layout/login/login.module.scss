@@ -1,0 +1,118 @@
+@use '/src/styles/constants/colors';
+
+.loginWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loginBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  padding: 10vw 24vh;
+
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.formWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 56vh;
+  background: linear-gradient(0deg, rgba(34, 193, 195, 0%) 0%, rgb(0, 0, 0) 0%, rgba(253, 187, 45, 0%) 100%);
+  border-radius: 20px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  & img {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .inputWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid colors.$GRAYE;
+    // border-radius: 5px;
+
+    .idInput {
+      z-index: 1;
+      width: 100%;
+      padding: 10px 15px;
+      margin-left: 2px;
+      font-size: 16px;
+      color: colors.$WHITE;
+
+      &::placeholder {
+        color: colors.$GRAYE;
+      }
+    }
+
+    .checkIcon {
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
+      stroke: colors.$WHITE;
+
+      &.checkIconOK {
+        stroke: rgb(83, 203, 119);
+      }
+    }
+
+    .invalid {
+      position: absolute;
+      bottom: 0;
+      left: 14px;
+      font-size: 14px;
+      font-weight: bold;
+      color: rgba(241, 75, 75, 84.2%);
+      opacity: 0;
+      transition: all 0.3s;
+
+      &.invalidOK {
+        bottom: -24px;
+        opacity: 1;
+      }
+    }
+  }
+
+  .loginBtn {
+    padding: 10px 15px;
+    margin-top: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: colors.$WHITE;
+    background-color: colors.$BLACK;
+    border: 1px solid colors.$WHITE;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      color: colors.$BLACK;
+      background-color: rgb(83, 203, 119);
+      border: 1px solid rgb(83, 203, 119);
+    }
+
+    &:disabled:hover {
+      color: colors.$WHITE;
+      background-color: colors.$BLACK;
+      border: 1px solid colors.$WHITE;
+    }
+  }
+}
