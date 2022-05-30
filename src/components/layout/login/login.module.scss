@@ -10,6 +10,41 @@
   background-size: cover;
 }
 
+.popup {
+  position: absolute;
+  top: 3%;
+  right: -24%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 24vw;
+  padding: 20px 30px;
+  color: colors.$WHITE;
+  background-color: #000000;
+  border-radius: 5px;
+  transition: all 1s;
+
+  &::before {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    width: 5px;
+    height: 80%;
+    content: '';
+    background-color: rgba(241, 75, 75, 84.2%);
+    border-radius: 5px;
+  }
+
+  &.popupOK {
+    right: 3%;
+  }
+
+  & button {
+    font-size: 16px;
+    color: colors.$WHITE;
+  }
+}
+
 .loginBackground {
   display: flex;
   align-items: center;
