@@ -3,19 +3,21 @@ import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useMemo } from 'react'
 import { useMount } from 'react-use'
-import { getHeartRateApi } from 'services/getData'
-// import { temp1, tempData } from 'states/heartRateData'
+import { getHeartRateApi, getStepRateApi } from 'services/getData'
+import { getUserData, heart } from 'states/userData'
+
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
 import styles from './heartRateChart.module.scss'
 
 const HeartRateChart = () => {
   const dispatch = useAppDispatch()
-  // const testData = useAppSelector(tempData)
+  const testData = useAppSelector(getUserData)
 
+  useMount(() => {
+    getHeartRateApi(136)?.then((res) => res.map((item) => dispatch(heart(item.data))))
+  })
   // useMount(() => {
-  //   getHeartRateApi().then((res) => {
-  //     dispatch(temp1(res.data))
-  //   })
+  //   getStepRateApi(136)?.then((res) => res.map((item) => dispatch(step(item.data))))
   // })
 
   // const Tdata = useMemo(() => {

@@ -5,6 +5,7 @@ import Home from './home'
 import UserDetail from './users/userDetail'
 import Login from './login'
 import Users from './users/search'
+import Temp from './users/Temp'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route element={<Layout />}>
           <Route path='home' element={<Home />} />
           <Route path='users' element={<Users />}>
+            <Route path='' element={<Temp />} />
             <Route path=':userId' element={<UserDetail />} />
           </Route>
         </Route>

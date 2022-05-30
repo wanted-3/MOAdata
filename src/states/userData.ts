@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
+import dayjs from 'dayjs'
 import type { RootState } from '.'
 
-export interface DateState {
+interface UserState {
   value: {
     all: {
       heartRate: any[]
@@ -14,7 +15,7 @@ export interface DateState {
   }
 }
 
-const INITIAL_STATE: DateState = {
+const INITIAL_STATE: UserState = {
   value: {
     all: {
       heartRate: [],
@@ -28,15 +29,41 @@ const INITIAL_STATE: DateState = {
 }
 
 const systemSlice = createSlice({
-  name: 'dateData',
+  name: 'userData',
   initialState: INITIAL_STATE,
   reducers: {
-    temp: () => {},
+    heart: (state, action) => {
+      state.value.all.heartRate = state.value.all.heartRate.concat(action.payload)
+
+      // console.log(current(state.value.all))
+      // console.log(dayjs('2022-02-26 20:21:31').format('YYYY-MM-DD'))
+
+      // 2022-02-26 20:21:31
+      // 2022-02-26
+    },
+    step: (state, action) => {
+      state.value.all.step = state.value.all.heartRate.concat(action.payload)
+
+      // console.log(current(state.value.all))
+      // console.log(dayjs('2022-02-26 20:21:31').format('YYYY-MM-DD'))
+
+      // 2022-02-26 20:21:31
+      // 2022-02-26
+    },
+    filter: (state, action) => {
+      state.value.filter.heartRate = state.value.all.heartRate.filter((item) => {
+        return (
+          action.payload.startDate <= dayjs(item.crt_ymdt).format('YYYY-MM-DD') &&
+          dayjs(item.crt_ymdt).format('YYYY-MM-DD') <= action.payload.endDate
+        )
+      })
+      console.log(state.value.filter.heartRate)
+    },
   },
 })
 
-export const { temp } = systemSlice.actions
+export const { heart, filter } = systemSlice.actions
 
 export default systemSlice.reducer
 
-export const getDate = (state: RootState) => state.dateData.date
+export const getUserData = (state: RootState) => state.userData.value

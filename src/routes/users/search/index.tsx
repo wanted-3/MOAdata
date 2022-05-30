@@ -1,13 +1,23 @@
-import Datepicker from 'components/common/Datepicker'
-import Search from 'components/users/search/SearchForm'
-import { Outlet } from 'react-router-dom'
-import { setUserDate } from 'states/dateData'
+import { getHeartRateApi } from 'services/getData'
+import { Outlet, useNavigate, useParams } from 'react-router-dom'
+import { useMount } from 'react-use'
 
 const Users = () => {
+  const { userId } = useParams()
+
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate('/users')
+  }
+
   return (
     <div>
-      <Datepicker dispatchUserDate={setUserDate} />
-      <Search />
+      <div>홈</div>
+      <button type='button' onClick={handleClick}>
+        회원 관리
+      </button>
+      {userId && <div>회원 상세</div>}
       <Outlet />
     </div>
   )
