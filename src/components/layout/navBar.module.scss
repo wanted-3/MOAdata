@@ -1,3 +1,16 @@
+.navBar {
+  width: 200px;
+  background-color: aliceblue;
+
+  ul {
+    background-color: lightblue;
+
+    li {
+      padding: 15px;
+    }
+  }
+}
+
 .clicked {
   font-weight: 700;
 }

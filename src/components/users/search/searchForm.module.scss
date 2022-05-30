@@ -1,9 +1,40 @@
-.userFormContainer {
-  input {
-    margin: 10px;
+.searchForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: indianred;
+
+  .form {
+    position: relative;
+    height: 150px;
+    background-color: saddlebrown;
+
+    input {
+      margin: 10px;
+      border: 1px solid gainsboro;
+    }
+
+    .submitBtn {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: 10px 15px;
+      background-color: pink;
+    }
   }
 
-  button {
-    margin: 10px;
+  .datePicker {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+  }
+
+  .resetBtn {
+    position: absolute;
+    right: 70px;
+    width: 90px;
+    padding: 10px;
+    margin-top: -37px;
+    background-color: pink;
   }
 }

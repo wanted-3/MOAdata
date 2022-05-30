@@ -7,9 +7,8 @@ const Layout = () => {
   return (
     <div className={styles.layout}>
       <Header />
-      <NavBar />
-
-      <main>
+      <main className={styles.main}>
+        <NavBar />
         <Outlet />
       </main>
     </div>

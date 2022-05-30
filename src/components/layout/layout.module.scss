@@ -1,0 +1,10 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+
+  .main {
+    display: flex;
+    width: 100%;
+    background-color: beige;
+  }
+}
