@@ -1,8 +1,9 @@
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from 'victory'
-
+import styles from './stepRateChart.module.scss'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useParams } from 'react-router-dom'
 import { getUserData } from 'states/userData'
+import dayjs from 'dayjs'
 
 const StepRateChart = () => {
   const stepRateData = useAppSelector(getUserData)
@@ -24,17 +25,16 @@ const StepRateChart = () => {
       <div>
         <VictoryChart
           animate={{
-            duration: 1000,
-            onLoad: { duration: 2000 },
+            duration: 2000,
+            easing: 'bounce',
           }}
           domainPadding={40}
           height={500}
           width={500}
-          theme={VictoryTheme.material}
         >
           <VictoryAxis
-            tickFormat={(date, idx) => {
-              return idx === date.length ? '1일' : ''
+            tickFormat={(t, index) => {
+              return index % Math.round(sampleData.length / 8) === 0 ? dayjs(t).format('MM-DD') : ''
             }}
           />
           <VictoryAxis dependentAxis tickFormat={(x) => `${x}걸음`} />
