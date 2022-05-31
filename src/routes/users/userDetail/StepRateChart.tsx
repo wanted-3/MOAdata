@@ -21,8 +21,8 @@ const StepRateChart = () => {
   const { userId } = useParams()
 
   return (
-    <div>
-      <div>
+    <div className={styles.wrap}>
+      <div className={styles.graphWrap}>
         <VictoryChart
           animate={{
             duration: 2000,
