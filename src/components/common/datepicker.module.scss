@@ -3,6 +3,7 @@
 .wrap {
   display: flex;
   align-items: center;
+  width: 100%;
 
   .title {
     width: 80px;
@@ -17,10 +18,10 @@
     .dateInput {
       width: 200px;
       height: 24px;
+      padding-left: 10px;
       font-size: 16px;
       border: 1px solid colors.$NAV_BLACK;
       border-radius: 5px;
-      padding-left: 10px;
 
       &:hover {
         cursor: pointer;
@@ -28,12 +29,23 @@
     }
 
     span {
-      margin-left: 20px;
       margin-right: 20px;
+      margin-left: 20px;
     }
   }
 
   .buttons {
-    margin-left: 20px;
+    margin-top: 32px;
+    margin-left: 10px;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .buttons {
+    margin: 0;
   }
 }

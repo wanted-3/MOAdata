@@ -1,0 +1,20 @@
+@use 'styles/constants/colors';
+
+.table {
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  background-color: colors.$BACKGROUND;
+  border-radius: 10px;
+
+  thead {
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1.5px colors.$HOVER_GRAY solid;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+}

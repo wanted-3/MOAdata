@@ -1,4 +1,5 @@
 import { Outlet, useNavigate, useParams, useLocation } from 'react-router-dom'
+import { useMount } from 'react-use'
 import styles from './userNavigate.module.scss'
 
 const UserNavigate = () => {
@@ -13,6 +14,10 @@ const UserNavigate = () => {
   const handleHomeClick = () => {
     navigate('/home')
   }
+
+  useMount(() => {
+    userId && navigate('/users')
+  })
 
   return (
     <div className={styles.userNavigate}>

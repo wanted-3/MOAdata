@@ -19,6 +19,14 @@ interface UserState {
       date: string
       member_seq: number
     }[]
+    stepDate: {
+      startDate: string
+      endDate: string
+    }
+    heartRateDate: {
+      startDate: string
+      endDate: string
+    }
   }
 }
 
@@ -33,6 +41,14 @@ const INITIAL_STATE: UserState = {
       step: [],
     },
     userInfo: userID,
+    heartRateDate: {
+      startDate: '2022-01-01',
+      endDate: '2022-05-30',
+    },
+    stepDate: {
+      startDate: '2022-01-01',
+      endDate: '2022-05-30',
+    },
   },
 }
 
@@ -51,6 +67,9 @@ const systemSlice = createSlice({
     },
 
     getFilteredHeartRateData: (state, action) => {
+      state.value.heartRateDate.startDate = action.payload.startDate
+      state.value.heartRateDate.endDate = action.payload.endDate
+
       state.value.filter.heartRate = state.value.all.heartRate.filter((item) => {
         return (
           action.payload.startDate <= formatedDate(item.crt_ymdt) &&
@@ -60,6 +79,9 @@ const systemSlice = createSlice({
     },
 
     getFilteredStepData: (state, action) => {
+      state.value.stepDate.startDate = action.payload.startDate
+      state.value.stepDate.endDate = action.payload.endDate
+
       state.value.filter.step = state.value.all.step.filter((item) => {
         return (
           action.payload.startDate <= formatedDate(item.crt_ymdt) &&

@@ -11,12 +11,14 @@ import { getReset, setReset } from 'states/dateData'
 
 import styles from './datepicker.module.scss'
 import Button from './Button'
+import { cx } from 'styles'
 
 interface DatePickerProps {
   dispatchUserDate: ActionCreatorWithPayload<any, string>
+  column?: boolean
 }
 
-const Datepicker = ({ dispatchUserDate }: DatePickerProps) => {
+const Datepicker = ({ dispatchUserDate, column }: DatePickerProps) => {
   const dispatch = useAppDispatch()
   const isReset = useAppSelector(getReset)
   const [startDate, setStartDate] = useState(START_DATE)
@@ -60,31 +62,34 @@ const Datepicker = ({ dispatchUserDate }: DatePickerProps) => {
   }, [dispatch, endDate, startDate, dispatchUserDate])
 
   return (
-    <div className={styles.wrap}>
-      <p className={styles.title}>조회기간</p>
-      <div className={styles.dateInputs}>
-        <DatePicker
-          className={styles.dateInput}
-          selected={startDate.date}
-          onChange={handleStartDate}
-          startDate={startDate.date}
-          minDate={MIN_DATE}
-          maxDate={TODAY}
-          dateFormat={startDate.state}
-          selectsStart
-        />
-        <span>~</span>
-        <DatePicker
-          className={styles.dateInput}
-          selected={endDate.date}
-          onChange={handleEndDate}
-          endDate={endDate.date}
-          minDate={MIN_DATE}
-          maxDate={TODAY}
-          dateFormat={endDate.state}
-          selectsEnd
-        />
+    <div className={cx(styles.wrap, { [styles.column]: column })}>
+      <div className={styles.datePicker}>
+        <p className={styles.title}>조회기간</p>
+        <div className={styles.dateInputs}>
+          <DatePicker
+            className={styles.dateInput}
+            selected={startDate.date}
+            onChange={handleStartDate}
+            startDate={startDate.date}
+            minDate={MIN_DATE}
+            maxDate={TODAY}
+            dateFormat={startDate.state}
+            selectsStart
+          />
+          <span>~</span>
+          <DatePicker
+            className={styles.dateInput}
+            selected={endDate.date}
+            onChange={handleEndDate}
+            endDate={endDate.date}
+            minDate={MIN_DATE}
+            maxDate={TODAY}
+            dateFormat={endDate.state}
+            selectsEnd
+          />
+        </div>
       </div>
+
       <div className={styles.buttons}>
         <Button onClick={handleToday} title='오늘' size='medium' />
         <Button onClick={handleWeek} title='1주' size='medium' />

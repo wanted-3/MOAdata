@@ -73,10 +73,9 @@ const SearchForm = () => {
 
             <label htmlFor='memberIdInput'>회원번호</label>
             <input id='memberIdInput' type='text' onChange={handleMemberIdChange} value={memberSeq} />
-            <Button title='검색' size='big' />
-            {/* <button type='submit' className={styles.submitBtn}>
+            <button type='submit' className={styles.submitBtn}>
               검색
-            </button> */}
+            </button>
           </form>
           <div className={styles.datePickerWrap}>
             <Datepicker dispatchUserDate={setUserDate} />

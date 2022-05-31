@@ -1,7 +1,9 @@
 @use '/src/styles/constants/colors';
 
 .searchResult {
-  height: 700px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 20px;
   background-color: colors.$WHITE;
   border-radius: 10px;
@@ -13,24 +15,6 @@
       font-weight: bold;
       color: colors.$RED;
       background-color: transparent;
-    }
-  }
-
-  .table {
-    width: 100%;
-    font-size: 14px;
-    text-align: center;
-    background-color: colors.$BACKGROUND;
-
-    thead {
-      font-size: 16px;
-      font-weight: bold;
-      border-bottom: 1.5px colors.$HOVER_GRAY solid;
-    }
-
-    th,
-    td {
-      padding: 10px;
     }
   }
 

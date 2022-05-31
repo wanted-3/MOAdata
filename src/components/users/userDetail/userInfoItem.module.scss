@@ -1,0 +1,23 @@
+@use 'styles/constants/colors';
+
+.liStyle {
+  display: flex;
+  align-items: center;
+
+  .item {
+    width: 100px;
+    padding: 12px 18px;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: colors.$GRAYD;
+    text-align: center;
+    background-color: colors.$NAV_BLACK;
+    border-radius: 50px;
+  }
+
+  .data {
+    padding: 15px;
+    font-size: 16px;
+  }
+}
