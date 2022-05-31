@@ -4,7 +4,7 @@ export const MIN_DATE = new Date('2022-01-01')
 export const TODAY = new Date()
 export const WEEK = dayjs(TODAY).subtract(6, 'day').toDate()
 
-export const formatedDate = (date: Date) => {
+export const formatedDate = (date: Date | string | number) => {
   return dayjs(date).format('YYYY-MM-DD')
 }
 export const START_DATE = { date: MIN_DATE, state: '전체' }

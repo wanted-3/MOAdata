@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import dayjs from 'dayjs'
 import { IHeartRate, IStep } from 'types/chartData'
+import { formatedDate } from 'utils/date'
 import type { RootState } from '.'
 
 interface UserState {
@@ -68,8 +68,8 @@ const systemSlice = createSlice({
     getFilteredHeartRateData: (state, action) => {
       state.value.filter.heartRate = state.value.all.heartRate.filter((item) => {
         return (
-          action.payload.startDate <= dayjs(item.crt_ymdt).format('YYYY-MM-DD') &&
-          dayjs(item.crt_ymdt).format('YYYY-MM-DD') <= action.payload.endDate
+          action.payload.startDate <= formatedDate(item.crt_ymdt) &&
+          formatedDate(item.crt_ymdt) <= action.payload.endDate
         )
       })
     },
@@ -77,8 +77,8 @@ const systemSlice = createSlice({
     getFilteredStepData: (state, action) => {
       state.value.filter.step = state.value.all.step.filter((item) => {
         return (
-          action.payload.startDate <= dayjs(item.crt_ymdt).format('YYYY-MM-DD') &&
-          dayjs(item.crt_ymdt).format('YYYY-MM-DD') <= action.payload.endDate
+          action.payload.startDate <= formatedDate(item.crt_ymdt) &&
+          formatedDate(item.crt_ymdt) <= action.payload.endDate
         )
       })
     },
