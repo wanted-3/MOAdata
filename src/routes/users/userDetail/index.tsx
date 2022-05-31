@@ -1,12 +1,14 @@
-import styles from './userDetail.module.scss'
-import 'react-datepicker/dist/react-datepicker.css'
 import { useMemo } from 'react'
+import 'react-datepicker/dist/react-datepicker.css'
+
 import { getFilteredHeartRateData, getFilteredStepData, getUserData } from 'states/userData'
-import Datepicker from 'components/common/Datepicker'
 import { useAppSelector } from 'hooks/useAppSelector'
-import UserInfoItem from './UserInfoItem'
-import StepRateChart from 'components/users/userDetail/StepRateChart'
+
 import HeartRateChart from 'components/users/userDetail/HeartRateChart'
+import StepRateChart from 'components/users/userDetail/StepRateChart'
+import UserInfoItem from 'components/users/userDetail/UserInfoItem'
+import Datepicker from 'components/common/Datepicker'
+import styles from './userDetail.module.scss'
 
 const UserDetail = () => {
   const getId = useAppSelector(getUserData)
@@ -20,30 +22,19 @@ const UserDetail = () => {
   }, [getId.userInfo])
 
   return (
-    <div className={styles.detailWrapper}>
-      <h1>회원 상세 정보</h1>
-      <div className={styles.detail}>
-        <ul>
-          {userInformation.map((item) => (
-            <UserInfoItem key={`Mem_info-${item.value}`} item={item} />
-          ))}
-        </ul>
-      </div>
+    <div className={styles.userDetailWrapper}>
+      <h1 className={styles.title}>회원 상세 정보</h1>
+      <ul>
+        {userInformation.map((item) => (
+          <UserInfoItem key={`Mem_info-${item.value}`} item={item} />
+        ))}
+      </ul>
       <div className={styles.chartWrapper}>
-        <div>
-          <h2 className={styles.chartTitle}>심박수</h2>
-          <div className={styles.heartChart}>
-            <HeartRateChart />
-            <Datepicker dispatchUserDate={getFilteredHeartRateData} />
-          </div>
-        </div>
-        <div>
-          <h2 className={styles.chartTitle}>걸음수</h2>
-          <div className={styles.stepChart}>
-            <StepRateChart />
-            <Datepicker dispatchUserDate={getFilteredStepData} />
-          </div>
-        </div>
+        <HeartRateChart />
+        <StepRateChart />
+
+        <Datepicker dispatchUserDate={getFilteredHeartRateData} column />
+        <Datepicker dispatchUserDate={getFilteredStepData} column />
       </div>
     </div>
   )

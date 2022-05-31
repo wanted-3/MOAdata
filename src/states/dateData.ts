@@ -32,7 +32,7 @@ const INITIAL_STATE: DateState = {
     },
     heartRateDate: {
       startDate: '2022-01-01',
-      endDate: '2022-05-03',
+      endDate: '2022-05-30',
     },
   },
 }

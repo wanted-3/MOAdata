@@ -1,4 +1,4 @@
-import styles from './userDetail.module.scss'
+import styles from './userInfoItem.module.scss'
 
 interface Props {
   item: {

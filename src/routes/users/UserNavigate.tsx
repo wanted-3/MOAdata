@@ -1,4 +1,5 @@
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
+import { useMount } from 'react-use'
 import styles from './userNavigate.module.scss'
 
 const UserNavigate = () => {
@@ -9,6 +10,10 @@ const UserNavigate = () => {
   const handleClick = () => {
     navigate('/users')
   }
+
+  useMount(() => {
+    navigate('/users')
+  })
 
   return (
     <div className={styles.userNavigate}>

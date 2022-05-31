@@ -6,7 +6,7 @@ import styles from './button.module.scss'
 interface Props {
   title: string
   onClick: (e: MouseEvent<HTMLButtonElement>) => void
-  size: string
+  size: 'big' | 'medium' | 'small'
   value?: number
 }
 

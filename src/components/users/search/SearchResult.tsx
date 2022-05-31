@@ -1,25 +1,15 @@
-import { useState, useEffect, MouseEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-import { resetUserData, getHeartRateData, getStepData, getUserInfo } from 'states/userData'
-import { getHeartRateApi, getStepRateApi } from 'services/getData'
-import { useAppDispatch } from 'hooks/useAppDispatch'
+import { useState } from 'react'
 
 import styles from './searchResult.module.scss'
-import Button from 'components/common/Button'
 import { IData } from 'types/userData.d'
+import UserTable from './UserTable'
 
 interface SearchResultProps {
   userData: IData[]
 }
 
 const SearchResult = ({ userData }: SearchResultProps) => {
-  const dispatch = useAppDispatch()
-
   const [page, setPage] = useState(1)
-  const [offset, setOffset] = useState(0)
-
-  const navigate = useNavigate()
 
   const numOfPeople = userData.length
   const totalPage = Math.ceil(numOfPeople / 10)
@@ -32,53 +22,13 @@ const SearchResult = ({ userData }: SearchResultProps) => {
     setPage((prev) => prev - 1)
   }
 
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    const numberId = Number(e.currentTarget.value)
-
-    dispatch(resetUserData())
-
-    getHeartRateApi(numberId)?.then((res) => res.map((item) => dispatch(getHeartRateData(item.data))))
-    getStepRateApi(numberId)?.then((res) => res.map((item) => dispatch(getStepData(item.data))))
-    dispatch(getUserInfo(numberId))
-
-    navigate(e.currentTarget.value)
-  }
-
-  useEffect(() => {
-    setOffset((page - 1) * 10)
-  }, [page])
-
   return (
     <div className={styles.searchResult}>
       <p>
         전체 총 <mark>{numOfPeople}</mark> 명의 회원이 검색되었습니다.
       </p>
-      {/* TODO:rafactoring */}
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>회원번호</th>
-            <th>가입일</th>
-            <th>로그인ID</th>
-            <th>상세</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userData.slice(offset, offset + 10).map((v) => {
-            const { id, date, member_seq: memberSeq } = v
-            return (
-              <tr key={memberSeq}>
-                <td>{memberSeq}</td>
-                <td>{date}</td>
-                <td>{id}</td>
-                <td>
-                  <Button title='관리' onClick={handleClick} size='small' value={memberSeq} />
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+
+      <UserTable userData={userData} page={page} />
 
       <div className={styles.pagination}>
         <button className={styles.paginationBtn} type='button' onClick={handlePrevPage} disabled={page === 1}>

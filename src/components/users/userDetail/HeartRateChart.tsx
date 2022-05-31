@@ -1,45 +1,49 @@
-import dayjs from 'dayjs'
-import { useAppSelector } from 'hooks/useAppSelector'
+import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
 import { useMemo } from 'react'
+import dayjs from 'dayjs'
+
+import { useAppSelector } from 'hooks/useAppSelector'
 import { getUserData } from 'states/userData'
 
-import { VictoryAxis, VictoryChart, VictoryLine } from 'victory'
 import styles from './heartRateChart.module.scss'
 
 const HeartRateChart = () => {
-  const testData = useAppSelector(getUserData)
+  const heartRateData = useAppSelector(getUserData)
 
-  const Tdata = useMemo(() => {
-    return testData.filter.heartRate
+  const lineChartData = useMemo(() => {
+    return heartRateData.filter.heartRate
       .map((item) => {
         return { x: item.crt_ymdt, y: item.avg_beat }
       })
       .reverse()
-  }, [testData])
+  }, [heartRateData])
 
-  const maxima = useMemo(() => {
+  const averageBpm = useMemo(() => {
     return Math.floor(
-      Tdata.map((item) => item.y).reduce((acc: number, cur: number) => {
-        return acc + cur
-      }, 0) / Tdata.length
+      lineChartData
+        .map((item) => item.y)
+        .reduce((acc: number, cur: number) => {
+          return acc + cur
+        }, 0) / lineChartData.length
     )
-  }, [Tdata])
+  }, [lineChartData])
 
   return (
-    <>
+    <div className={styles.heartChart}>
+      <h2 className={styles.chartTitle}>심박수</h2>
       <div className={styles.chart}>
         <VictoryChart
           animate={{
             duration: 2500,
             onLoad: { duration: 2500 },
           }}
-          width={400}
-          height={350}
-          padding={{ left: 90, bottom: 50, top: 50, right: 50 }}
+          width={500}
+          height={450}
+          padding={{ left: 80, bottom: 50, top: 50, right: 50 }}
         >
           <VictoryAxis
             tickFormat={(t, index) => {
-              return (index + 1) % Math.round(Tdata.length / 5) === 0 ? dayjs(t).format('HH:mm:ss') : ''
+              return (index + 1) % Math.round(lineChartData.length / 5) === 0 ? dayjs(t).format('HH:mm:ss') : ''
             }}
           />
           <VictoryAxis dependentAxis padding={100} tickFormat={(t) => `${t}bpm`} />
@@ -48,15 +52,23 @@ const HeartRateChart = () => {
             style={{
               data: { stroke: '#A697FF' },
             }}
-            data={Tdata}
+            data={lineChartData}
           />
         </VictoryChart>
       </div>
-      <div className={styles.chartDetail}>
-        <p>날짜</p>
-        <p>평균 {maxima} bpm</p>
-      </div>
-    </>
+      <dl className={styles.chartDetail}>
+        <div>
+          <dt>날짜</dt>
+          <dd>
+            {heartRateData.heartRateDate.startDate} ~ {heartRateData.heartRateDate.endDate}
+          </dd>
+        </div>
+        <div>
+          <dt> 평균</dt>
+          <dd>{averageBpm || 0} bpm</dd>
+        </div>
+      </dl>
+    </div>
   )
 }
 
