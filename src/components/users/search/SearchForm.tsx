@@ -1,30 +1,15 @@
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
-import { useEffect, useRef, useState, ChangeEvent, FormEvent, MouseEvent } from 'react'
+import { useEffect, useRef, useState, ChangeEvent, FormEvent } from 'react'
 import { getDate, setReset, setUserDate } from 'states/dateData'
 import SearchResult from './SearchResult'
 import { IData } from 'types/userData.d'
 import styles from './searchForm.module.scss'
 import Datepicker from 'components/common/Datepicker'
 import Button from 'components/common/Button'
+import { userID } from 'utils/member'
 
-const userData: IData[] | [] = [
-  {
-    id: 'asdf',
-    date: '2022-05-28 12:12:12',
-    member_seq: 136,
-  },
-  {
-    id: 'zxcv',
-    date: '2022-05-30 10:24:45',
-    member_seq: 328,
-  },
-  {
-    id: 'qwer',
-    date: '2022-04-01 13:13:13',
-    member_seq: 380,
-  },
-]
+const userData: IData[] | [] = userID
 
 const SearchForm = () => {
   const inputIDRef = useRef<HTMLInputElement>(null)
