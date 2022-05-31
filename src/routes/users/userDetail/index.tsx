@@ -1,7 +1,7 @@
 import styles from './userDetail.module.scss'
 import 'react-datepicker/dist/react-datepicker.css'
-import StepRateChart from './StepRateChart'
 import HeartRateChart from './HeartRateChart'
+import StepRateChart from './StepRateChart'
 import { filter, filterTemp2, heart, step } from 'states/userData'
 import Datepicker from 'components/common/Datepicker'
 

@@ -4,9 +4,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: colors.$BACKGROUND;
   width: 1000px;
   padding: 30px;
+  background-color: colors.$BACKGROUND;
 
   .form {
     position: relative;
@@ -20,12 +20,13 @@
 
     .submitBtn {
       position: absolute;
-      width: 80px;
       right: 0;
       bottom: 0;
-      padding: 10px 15px;
-      border-radius: 10px;
+      width: 90px;
+      padding: 12px 0;
+      color: colors.$GRAYE;
       background-color: colors.$BLUE;
+      border-radius: 20px;
     }
   }
 
@@ -33,14 +34,5 @@
     position: absolute;
     top: 50px;
     width: 100%;
-  }
-
-  .resetBtn {
-    position: absolute;
-    right: 70px;
-    width: 90px;
-    padding: 10px;
-    margin-top: -37px;
-    background-color: pink;
   }
 }

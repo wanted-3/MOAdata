@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useNavigate } from 'react-router-dom'
-// import { useAppSelector } from 'hooks/useAppSelector'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { setAccessUserTF, setLoginID } from 'states/accessUser'
 
 import styles from './login.module.scss'
 import LOGO from 'assets/logo-w.png'
-import { setAccessUserTF, setLoginID } from 'states/accessUser'
 
 const TEMPORARY = [
   {
@@ -21,6 +20,7 @@ const TEMPORARY = [
     pw: 'zxc123',
   },
 ]
+
 const Login = () => {
   const dispatch = useAppDispatch()
   const [checkId, setCheckId] = useState(false)
@@ -28,6 +28,7 @@ const Login = () => {
   const [showTxt, setShowTxt] = useState(false)
   const [showPopup, setShowPopup] = useState(false)
   const [login, setLogin] = useState('')
+
   const navigate = useNavigate()
 
   const handleCheckId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,14 +81,16 @@ const Login = () => {
         <form className={styles.loginForm}>
           <img src={LOGO} alt='모아테이타 로고' />
           <div className={styles.inputWrap}>
-            <input type='text' placeholder='아이디 입력' className={styles.idInput} onChange={handleCheckId} />
+            <div className={styles.inputBox}>
+              <input type='text' placeholder='아이디 입력' className={styles.idInput} onChange={handleCheckId} />
+            </div>
+            <div className={styles.inputBox}>
+              <input type='password' placeholder='비밀번호 입력' className={styles.pwInput} onChange={handleCheckPw} />
+            </div>
+            <p className={`${styles.invalid} ${showTxt ? styles.invalidOK : ''}`}>
+              일치하는 아이디, 비밀번호가 없습니다.
+            </p>
           </div>
-          <div className={styles.inputWrap}>
-            <input type='password' placeholder='비밀번호 입력' className={styles.idInput} onChange={handleCheckPw} />
-          </div>
-          <p className={`${styles.invalid} ${showTxt ? styles.invalidOK : ''}`}>
-            일치하는 아이디, 비밀번호가 없습니다.
-          </p>
           <button type='button' className={styles.loginBtn} disabled={!checkId} onClick={setAccessUser}>
             로그인 하기
           </button>

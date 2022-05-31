@@ -1,8 +1,23 @@
 @use 'styles/constants/colors';
 
 .button {
-  padding: 10px;
-  border-radius: 10px;
-  background-color: colors.$BLUE;
   color: colors.$GRAYE;
+  border-radius: 20px;
+
+  &.big {
+    padding: 12px 18px;
+    background-color: colors.$BLUE;
+  }
+
+  &.medium {
+    width: 60px;
+    padding: 8px 0;
+    background-color: colors.$GRAY2;
+  }
+
+  &.small {
+    padding: 10px 15px;
+    color: colors.$GRAY2;
+    background-color: colors.$HOVER_GRAY;
+  }
 }
