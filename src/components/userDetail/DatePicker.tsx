@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 
 import styles from './datePicker.module.scss'
 import dayjs from 'dayjs'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { filter, filterTemp2 } from 'states/userData'
 
 const MIN_DATE = new Date('2022-01-01')
 const TODAY = new Date()
@@ -15,8 +17,9 @@ const formatedDate = (date: Date) => {
 
 const DatePicker = () => {
   const [startDate, setStartDate] = useState({ day: MIN_DATE, state: '전체' })
-
   const [endDate, setEndDate] = useState({ day: TODAY, state: '전체' })
+
+  const dispatch = useAppDispatch()
 
   const handleChangeStartDate = (date: Date) => {
     setStartDate({ day: date, state: formatedDate(date) })
@@ -43,6 +46,9 @@ const DatePicker = () => {
 
   useEffect(() => {
     if (dayjs(startDate.day).isAfter(endDate.day)) return
+
+    dispatch(filter({ startDate: formatedDate(startDate.day), endDate: formatedDate(endDate.day) }))
+    dispatch(filterTemp2({ startDate: formatedDate(startDate.day), endDate: formatedDate(endDate.day) }))
 
     console.log('시작 날짜', formatedDate(startDate.day))
     console.log('종료 날짜', formatedDate(endDate.day))
