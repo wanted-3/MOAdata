@@ -4,8 +4,8 @@ import Layout from 'components/layout'
 import Home from './home'
 import UserDetail from './users/userDetail'
 import Login from './login'
-import Users from './users/search'
-import Temp from './users/Temp'
+import Search from './users/search'
+import UserNavigate from './users/UserNavigate'
 
 const App = () => {
   return (
@@ -14,8 +14,8 @@ const App = () => {
         <Route path='/' element={<Login />} />
         <Route element={<Layout />}>
           <Route path='home' element={<Home />} />
-          <Route path='users' element={<Users />}>
-            <Route path='' element={<Temp />} />
+          <Route path='users' element={<UserNavigate />}>
+            <Route path='' element={<Search />} />
             <Route path=':userId' element={<UserDetail />} />
           </Route>
         </Route>

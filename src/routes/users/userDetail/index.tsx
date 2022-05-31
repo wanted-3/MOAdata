@@ -2,12 +2,12 @@ import styles from './userDetail.module.scss'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useId, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import StepRateChart from './StepRateChart'
-import HeartRateChart from './HeartRateChart'
-import { filter, filterTemp2, getUserData } from 'states/userData'
+import { getFilteredHeartRateData, getFilteredStepData, getUserData } from 'states/userData'
 import Datepicker from 'components/common/Datepicker'
 import { useAppSelector } from 'hooks/useAppSelector'
 import UserInfoItem from './UserInfoItem'
+import StepRateChart from 'components/users/userDetail/StepRateChart'
+import HeartRateChart from 'components/users/userDetail/HeartRateChart'
 
 const UserDetail = () => {
   const { userId } = useParams()
@@ -36,14 +36,14 @@ const UserDetail = () => {
           <h2>심박수or걸음수</h2>
           <div className={styles.chart}>
             <HeartRateChart />
-            <Datepicker dispatchUserDate={filter} />
+            <Datepicker dispatchUserDate={getFilteredHeartRateData} />
           </div>
         </div>
         <div>
           <h2>걸음수</h2>
           <div className={styles.chart}>
             <StepRateChart />
-            <Datepicker dispatchUserDate={filterTemp2} />
+            <Datepicker dispatchUserDate={getFilteredStepData} />
           </div>
         </div>
       </div>

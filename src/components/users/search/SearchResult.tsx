@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { IData } from 'types/userData.d'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { getHeartRateApi, getStepRateApi } from 'services/getData'
-import { heart, step, reset, userInfoTemp } from 'states/userData'
+import { resetUserData, getHeartRateData, getStepData, userInfoTemp } from 'states/userData'
 import Button from 'components/common/Button'
 
 interface Props {
@@ -30,11 +30,12 @@ const SearchResult = ({ userData }: Props) => {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     const numberId = Number(e.currentTarget.value)
 
-    dispatch(reset())
+    dispatch(resetUserData())
 
-    getHeartRateApi(numberId)?.then((res) => res.map((item) => dispatch(heart(item.data))))
-    getStepRateApi(numberId)?.then((res) => res.map((item) => dispatch(step(item.data))))
+    getHeartRateApi(numberId)?.then((res) => res.map((item) => dispatch(getHeartRateData(item.data))))
+    getStepRateApi(numberId)?.then((res) => res.map((item) => dispatch(getStepData(item.data))))
     dispatch(userInfoTemp(numberId))
+
     navigate(`${numberId}`)
   }
 

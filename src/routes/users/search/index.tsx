@@ -1,26 +1,11 @@
-import { getHeartRateApi } from 'services/getData'
-import { Outlet, useNavigate, useParams } from 'react-router-dom'
-import { useMount } from 'react-use'
+import SearchForm from 'components/users/search/SearchForm'
 
-const Users = () => {
-  const { userId } = useParams()
-
-  const navigate = useNavigate()
-
-  const handleClick = () => {
-    navigate('/users')
-  }
-
+const Search = () => {
   return (
     <div>
-      <div>홈</div>
-      <button type='button' onClick={handleClick}>
-        회원 관리
-      </button>
-      {userId && <div>회원 상세</div>}
-      <Outlet />
+      <SearchForm />
     </div>
   )
 }
 
-export default Users
+export default Search

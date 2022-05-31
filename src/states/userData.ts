@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
+import { IHeartRate, IStep } from 'types/chartData'
 import type { RootState } from '.'
 
 interface UserState {
   value: {
     all: {
-      heartRate: any[]
-      step: any[]
+      heartRate: IHeartRate[]
+      step: IStep[]
     }
     filter: {
-      heartRate: any[]
-      step: any[]
+      heartRate: IHeartRate[]
+      step: IStep[]
     }
     userInfo: {
       id: string
@@ -54,21 +55,17 @@ const systemSlice = createSlice({
   name: 'userData',
   initialState: INITIAL_STATE,
   reducers: {
-    heart: (state, action) => {
+    getHeartRateData: (state, action) => {
       state.value.all.heartRate = state.value.all.heartRate.concat(action.payload)
-
-      // console.log(current(state.value.all))
-      // console.log(dayjs('2022-02-26 20:21:31').format('YYYY-MM-DD'))
-
-      // 2022-02-26 20:21:31
-      // 2022-02-26
+      state.value.filter.heartRate = state.value.all.heartRate
     },
 
-    step: (state, action) => {
+    getStepData: (state, action) => {
       state.value.all.step = state.value.all.step.concat(action.payload)
+      state.value.filter.step = state.value.all.step
     },
 
-    filter: (state, action) => {
+    getFilteredHeartRateData: (state, action) => {
       state.value.filter.heartRate = state.value.all.heartRate.filter((item) => {
         return (
           action.payload.startDate <= dayjs(item.crt_ymdt).format('YYYY-MM-DD') &&
@@ -77,7 +74,7 @@ const systemSlice = createSlice({
       })
     },
 
-    filterTemp2: (state, action) => {
+    getFilteredStepData: (state, action) => {
       state.value.filter.step = state.value.all.step.filter((item) => {
         return (
           action.payload.startDate <= dayjs(item.crt_ymdt).format('YYYY-MM-DD') &&
@@ -92,13 +89,20 @@ const systemSlice = createSlice({
       // console.log(state.value.userInfo)
     },
 
-    reset: (state) => {
+    resetUserData: (state) => {
       state.value = INITIAL_STATE.value
     },
   },
 })
 
-export const { heart, step, filter, filterTemp2, userInfoTemp, reset } = systemSlice.actions
+export const {
+  getHeartRateData,
+  getStepData,
+  getFilteredHeartRateData,
+  getFilteredStepData,
+  userInfoTemp,
+  resetUserData,
+} = systemSlice.actions
 
 export default systemSlice.reducer
 
