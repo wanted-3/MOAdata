@@ -1,0 +1,13 @@
+@use '/src/styles/constants/colors';
+
+.userNavigate {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  .titleWrap {
+    display: flex;
+    padding-left: 30px;
+  }
+}

@@ -1,33 +1,34 @@
-import DatePicker from 'react-datepicker'
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { useEffect, useState } from 'react'
+import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker from 'react-datepicker'
 import dayjs from 'dayjs'
 
-import 'react-datepicker/dist/react-datepicker.css'
-import styles from './datepicker.module.scss'
+import { END_DATE, formatedDate, MIN_DATE, START_DATE, TODAY, WEEK } from 'utils/date'
 import { useAppDispatch } from 'hooks/useAppDispatch'
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { getReset, setReset } from 'states/dateData'
-import { END_DATE, formatedDate, MIN_DATE, START_DATE, TODAY, WEEK } from 'utils/date'
+
+import styles from './datepicker.module.scss'
 import Button from './Button'
 
-interface TempProps {
+interface DatePickerProps {
   dispatchUserDate: ActionCreatorWithPayload<any, string>
 }
 
-const Datepicker = ({ dispatchUserDate }: TempProps) => {
+const Datepicker = ({ dispatchUserDate }: DatePickerProps) => {
   const dispatch = useAppDispatch()
-  const tmp = useAppSelector(getReset)
+  const isReset = useAppSelector(getReset)
   const [startDate, setStartDate] = useState(START_DATE)
   const [endDate, setEndDate] = useState(END_DATE)
 
   useEffect(() => {
-    if (tmp) {
+    if (isReset) {
       setStartDate(START_DATE)
       setEndDate(END_DATE)
       dispatch(setReset(false))
     }
-  }, [dispatch, tmp])
+  }, [dispatch, isReset])
 
   const handleStartDate = (date: Date) => {
     setStartDate({ date, state: formatedDate(date) })

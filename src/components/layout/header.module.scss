@@ -1,15 +1,25 @@
+@use 'src/styles/constants/colors';
+
 .header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: pink;
+  background-color: colors.$BACKGROUND;
+
+  .title {
+    font-size: 2rem;
+    color: colors.$NAV_BLACK;
+  }
+
   .userWrap {
-    h3 {
-      padding-right: 10px;
-    }
     display: flex;
     align-items: center;
+
+    h3 {
+      padding-right: 10px;
+      // TODO:글자색
+    }
   }
 }

@@ -10,6 +10,43 @@
   background-size: cover;
 }
 
+.popup {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 24vw;
+  padding: 20px 30px;
+  color: colors.$WHITE;
+  background-color: colors.$NAV_BLACK;
+  border-radius: 5px;
+  opacity: 0;
+  transition: all 0.2s;
+
+  &::before {
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    width: 5px;
+    height: 80%;
+    content: '';
+    background-color: colors.$RED_WARN;
+    border-radius: 5px;
+  }
+
+  &.popupOK {
+    opacity: 1;
+  }
+
+  & button {
+    margin-left: 10px;
+    font-size: 16px;
+    color: colors.$WHITE;
+  }
+}
+
 .loginBackground {
   display: flex;
   align-items: center;
@@ -46,48 +83,40 @@
 
   .inputWrap {
     position: relative;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid colors.$GRAYE;
-    // border-radius: 5px;
-
-    .idInput {
-      z-index: 1;
-      width: 100%;
-      padding: 10px 15px;
-      margin-left: 2px;
-      font-size: 16px;
-      color: colors.$WHITE;
-
-      &::placeholder {
-        color: colors.$GRAYE;
-      }
-    }
-
-    .checkIcon {
-      width: 30px;
-      height: 30px;
-      margin-right: 5px;
-      stroke: colors.$WHITE;
-
-      &.checkIconOK {
-        stroke: rgb(83, 203, 119);
-      }
-    }
 
     .invalid {
       position: absolute;
       bottom: 0;
-      left: 14px;
       font-size: 14px;
       font-weight: bold;
-      color: rgba(241, 75, 75, 84.2%);
+      color: colors.$RED_WARN;
       opacity: 0;
       transition: all 0.3s;
 
       &.invalidOK {
-        bottom: -24px;
         opacity: 1;
+      }
+    }
+
+    .inputBox {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid colors.$GRAYE;
+
+      .idInput,
+      .pwInput {
+        z-index: 1;
+        width: 100%;
+        padding: 10px 15px;
+        margin-left: 2px;
+        font-size: 16px;
+        color: colors.$WHITE;
+
+        &::placeholder {
+          color: colors.$GRAYE;
+        }
       }
     }
   }
@@ -105,8 +134,8 @@
 
     &:hover {
       color: colors.$BLACK;
-      background-color: rgb(83, 203, 119);
-      border: 1px solid rgb(83, 203, 119);
+      background-color: colors.$GREEN;
+      border: 1px solid colors.$GREEN;
     }
 
     &:disabled:hover {

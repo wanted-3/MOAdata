@@ -1,7 +1,6 @@
 import styles from './userDetail.module.scss'
 import 'react-datepicker/dist/react-datepicker.css'
-import { useId, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useMemo } from 'react'
 import { getFilteredHeartRateData, getFilteredStepData, getUserData } from 'states/userData'
 import Datepicker from 'components/common/Datepicker'
 import { useAppSelector } from 'hooks/useAppSelector'
@@ -10,7 +9,6 @@ import StepRateChart from 'components/users/userDetail/StepRateChart'
 import HeartRateChart from 'components/users/userDetail/HeartRateChart'
 
 const UserDetail = () => {
-  const { userId } = useParams()
   const getId = useAppSelector(getUserData)
 
   const userInformation = useMemo(() => {

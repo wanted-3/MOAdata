@@ -68,10 +68,8 @@ const systemSlice = createSlice({
       })
     },
 
-    userInfoTemp: (state, action) => {
+    getUserInfo: (state, action) => {
       state.value.userInfo = state.value.userInfo.filter((item) => item.member_seq === action.payload)
-
-      // console.log(state.value.userInfo)
     },
 
     resetUserData: (state) => {
@@ -85,7 +83,7 @@ export const {
   getStepData,
   getFilteredHeartRateData,
   getFilteredStepData,
-  userInfoTemp,
+  getUserInfo,
   resetUserData,
 } = systemSlice.actions
 

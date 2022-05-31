@@ -1,23 +1,27 @@
+import { useRef, useState, ChangeEvent, FormEvent } from 'react'
+import Datepicker from 'components/common/Datepicker'
+import { useMount } from 'react-use'
+
+import { getDate, setReset, setUserDate } from 'states/dateData'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
-import { useEffect, useRef, useState, ChangeEvent, FormEvent } from 'react'
-import { getDate, setReset, setUserDate } from 'states/dateData'
-import SearchResult from './SearchResult'
-import { IData } from 'types/userData.d'
-import styles from './searchForm.module.scss'
-import Datepicker from 'components/common/Datepicker'
-import Button from 'components/common/Button'
 import { userID } from 'utils/member'
 
-const userData: IData[] | [] = userID
+import Button from 'components/common/Button'
+import styles from './searchForm.module.scss'
+import SearchResult from './SearchResult'
+
+const USER_DATA = userID
 
 const SearchForm = () => {
-  const inputIDRef = useRef<HTMLInputElement>(null)
-  const [loginId, setLoginId] = useState('')
-  const [memberSeq, setMemberSeq] = useState('')
-  const [filteredData, setFilteredData] = useState(userData)
   const date = useAppSelector(getDate)
   const dispatch = useAppDispatch()
+
+  const [filteredUserData, setFilteredUserData] = useState(USER_DATA)
+  const [memberSeq, setMemberSeq] = useState('')
+  const [loginId, setLoginId] = useState('')
+
+  const inputIDRef = useRef<HTMLInputElement>(null)
 
   const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLoginId(e.currentTarget.value)
@@ -27,63 +31,60 @@ const SearchForm = () => {
     setMemberSeq(e.currentTarget.value)
   }
 
-  const onSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    let temp = [...userData]
+    let filterUserList = USER_DATA
     if (loginId !== '') {
-      temp = temp.filter((item) => item.id === loginId)
+      filterUserList = filterUserList.filter((item) => item.id === loginId)
     }
 
     if (memberSeq !== '') {
-      temp = temp.filter((item) => item.member_seq === Number(memberSeq))
+      filterUserList = filterUserList.filter((item) => item.member_seq === Number(memberSeq))
     }
 
-    temp = temp.filter(
+    filterUserList = filterUserList.filter(
       (item) =>
         Date.parse(date.userDate.startDate) <= Date.parse(item.date.slice(0, 10)) &&
         Date.parse(date.userDate.endDate) >= Date.parse(item.date.slice(0, 10))
     )
 
-    setFilteredData(temp)
+    setFilteredUserData(filterUserList)
   }
 
   const onReset = () => {
     setLoginId('')
     setMemberSeq('')
     dispatch(setReset(true))
-    setFilteredData(userData)
+    setFilteredUserData(USER_DATA)
   }
 
-  useEffect(() => {
+  useMount(() => {
     inputIDRef.current?.focus()
-  }, [])
-  // useEffect(() => {
-  //   if (onSearchSubmit) {
-  //     setLoginId('')
-  //     setMemberSeq('')
-  //   }
-  // }, [onSearchSubmit])
+  })
+
   return (
     <div className={styles.searchForm}>
-      <div className={styles.inputs}>
+      <div className={styles.dataInputWrap}>
         <div className={styles.formWrapper}>
-          <form className={styles.form} onSubmit={onSearchSubmit}>
+          <form className={styles.form} onSubmit={handleSearchSubmit}>
             <label htmlFor='loginIdInput'>로그인ID</label>
             <input id='loginIdInput' ref={inputIDRef} type='text' onChange={handleIdChange} value={loginId} />
+
             <label htmlFor='memberIdInput'>회원번호</label>
             <input id='memberIdInput' type='text' onChange={handleMemberIdChange} value={memberSeq} />
+
             <button type='submit' className={styles.submitBtn}>
               검색
             </button>
           </form>
-          {/* <Button title='필터초기화' onClick={onReset} /> */}
+
           <Datepicker dispatchUserDate={setUserDate} />
           <Button title='필터초기화' onClick={onReset} size='small' />
         </div>
       </div>
 
-      <SearchResult userData={filteredData} />
+      <SearchResult userData={filteredUserData} />
     </div>
   )
 }

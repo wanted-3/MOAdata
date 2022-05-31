@@ -16,7 +16,7 @@ const userSlice = createSlice({
   name: 'accessUser',
   initialState: INITIAL_STATE,
   reducers: {
-    setAccessUserTF: (state, action) => {
+    setLoginState: (state, action) => {
       state.access = action.payload
     },
     setLoginID: (state, action) => {
@@ -25,7 +25,7 @@ const userSlice = createSlice({
   },
 })
 
-export const { setAccessUserTF, setLoginID } = userSlice.actions
+export const { setLoginState, setLoginID } = userSlice.actions
 
 export default userSlice.reducer
 

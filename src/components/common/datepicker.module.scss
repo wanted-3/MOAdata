@@ -3,19 +3,17 @@
 .wrap {
   display: flex;
   align-items: center;
-  padding: 10px;
   width: 800px;
-
   .title {
     width: 80px;
     padding: 10px;
     text-align: center;
   }
+
   .dateInputs {
     display: flex;
-    // justify-content: space-between;
-    // width: 600px;
     align-items: center;
+
     .dateInput {
       width: 200px;
       height: 24px;
@@ -23,15 +21,15 @@
       border: 1px solid colors.$NAV_BLACK;
       border-radius: 5px;
       padding-left: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
+
     span {
       margin-left: 20px;
       margin-right: 20px;
     }
   }
-}
-
-.startDateInput:focus,
-.endDateInput:focus {
-  font-weight: bold;
 }

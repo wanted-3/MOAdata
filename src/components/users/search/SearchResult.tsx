@@ -1,32 +1,37 @@
 import { useState, useEffect, MouseEvent } from 'react'
-import styles from './searchResult.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { IData } from 'types/userData.d'
-import { useAppDispatch } from 'hooks/useAppDispatch'
-import { getHeartRateApi, getStepRateApi } from 'services/getData'
-import { resetUserData, getHeartRateData, getStepData, userInfoTemp } from 'states/userData'
-import Button from 'components/common/Button'
 
-interface Props {
+import { resetUserData, getHeartRateData, getStepData, getUserInfo } from 'states/userData'
+import { getHeartRateApi, getStepRateApi } from 'services/getData'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+
+import styles from './searchResult.module.scss'
+import Button from 'components/common/Button'
+import { IData } from 'types/userData.d'
+
+interface SearchResultProps {
   userData: IData[]
 }
 
-const SearchResult = ({ userData }: Props) => {
+const SearchResult = ({ userData }: SearchResultProps) => {
+  const dispatch = useAppDispatch()
+
   const [page, setPage] = useState(1)
   const [offset, setOffset] = useState(0)
-  const dispatch = useAppDispatch()
+
+  const navigate = useNavigate()
 
   const numOfPeople = userData.length
   const totalPage = Math.ceil(numOfPeople / 10)
 
-  const navigate = useNavigate()
-
   const handleNextPage = () => {
     setPage((prev) => prev + 1)
   }
+
   const handlePrevPage = () => {
     setPage((prev) => prev - 1)
   }
+
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     const numberId = Number(e.currentTarget.value)
 
@@ -34,9 +39,9 @@ const SearchResult = ({ userData }: Props) => {
 
     getHeartRateApi(numberId)?.then((res) => res.map((item) => dispatch(getHeartRateData(item.data))))
     getStepRateApi(numberId)?.then((res) => res.map((item) => dispatch(getStepData(item.data))))
-    dispatch(userInfoTemp(numberId))
+    dispatch(getUserInfo(numberId))
 
-    navigate(`${numberId}`)
+    navigate(e.currentTarget.value)
   }
 
   useEffect(() => {
@@ -48,6 +53,7 @@ const SearchResult = ({ userData }: Props) => {
       <p>
         전체 총 <mark>{numOfPeople}</mark> 명의 회원이 검색되었습니다.
       </p>
+      {/* TODO:rafactoring */}
       <table className={styles.table}>
         <thead>
           <tr>
@@ -73,6 +79,7 @@ const SearchResult = ({ userData }: Props) => {
           })}
         </tbody>
       </table>
+
       <div className={styles.pagination}>
         <button className={styles.paginationBtn} type='button' onClick={handlePrevPage} disabled={page === 1}>
           &lt;

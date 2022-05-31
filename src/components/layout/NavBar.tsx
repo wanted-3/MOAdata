@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { cx } from 'styles'
+
 import styles from './navBar.module.scss'
 
 const NavBar = () => {
