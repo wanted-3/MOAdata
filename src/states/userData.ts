@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IHeartRate, IStep } from 'types/chartData'
 import { formatedDate } from 'utils/date'
+import { userID } from 'utils/member'
 import type { RootState } from '.'
 
 interface UserState {
@@ -31,23 +32,7 @@ const INITIAL_STATE: UserState = {
       heartRate: [],
       step: [],
     },
-    userInfo: [
-      {
-        id: 'asdf',
-        date: '2022-05-28 12:12:12',
-        member_seq: 136,
-      },
-      {
-        id: 'zxcv',
-        date: '2022-05-30 10:24:45',
-        member_seq: 328,
-      },
-      {
-        id: 'qwer',
-        date: '2022-04-01 13:13:13',
-        member_seq: 380,
-      },
-    ],
+    userInfo: userID,
   },
 }
 
