@@ -15,13 +15,13 @@ const UserDetail = () => {
   return (
     <div className={styles.detailWrapper}>
       <h1>회원 상세 정보</h1>
-      <div className={styles.detail}>
-        <ul>
+      <div>
+        <ul className={styles.detail}>
           {title.map((item) => {
             return (
               <li className={styles.liStyle} key={`Mem_info-${item}`}>
                 <div className={styles.item}>{item}</div>
-                <div className={styles.data}>data</div>
+                <div className={styles.data}>{item}</div>
               </li>
             )
           })}
@@ -29,15 +29,15 @@ const UserDetail = () => {
       </div>
       <div className={styles.chartWrapper}>
         <div>
-          <h2>심박수</h2>
-          <div className={styles.chart}>
+          <h2 className={styles.chartTitle}>심박수</h2>
+          <div className={styles.heartChart}>
             <HeartRateChart />
             <Datepicker dispatchUserDate={filter} />
           </div>
         </div>
         <div>
-          <h2>걸음수</h2>
-          <div className={styles.chart}>
+          <h2 className={styles.chartTitle}>걸음수</h2>
+          <div className={styles.stepChart}>
             <StepRateChart />
             <Datepicker dispatchUserDate={filterTemp2} />
           </div>

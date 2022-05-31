@@ -21,22 +21,17 @@ const StepRateChart = () => {
   const { userId } = useParams()
 
   return (
-<<<<<<< HEAD
-    <div className={styles.wrap}>
-      <div className={styles.graphWrap}>
-=======
     <>
       <div className={styles.chart}>
->>>>>>> 1e749575745fa1d1972af60e5e3c76c85e572f14
         <VictoryChart
           animate={{
-            duration: 2000,
+            duration: 2500,
             easing: 'bounce',
           }}
           domainPadding={{ y: 40 }}
-          height={400}
-          width={500}
-          padding={{ left: 70, bottom: 40, top: 50, right: 50 }}
+          width={400}
+          height={350}
+          padding={{ left: 90, bottom: 50, top: 50, right: 50 }}
         >
           <VictoryAxis
             tickFormat={(t, index) => {
@@ -44,11 +39,13 @@ const StepRateChart = () => {
             }}
           />
           <VictoryAxis dependentAxis tickFormat={(x) => `${x}걸음`} />
-          <VictoryBar data={sampleData} style={{ data: { fill: '#c43a31' } }} />
+          <VictoryBar data={sampleData} style={{ data: { fill: '#A69BD1' } }} />
         </VictoryChart>
       </div>
-      <p>날짜</p>
-      <p>총{cn1}걸음</p>
+      <div className={styles.chartDetail}>
+        <p>날짜</p>
+        <p>총{cn1}걸음</p>
+      </div>
     </>
   )
 }

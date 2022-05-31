@@ -1,38 +1,63 @@
 @use '/src/styles/constants/colors';
 
 .detailWrapper {
-  width: 800px;
-  height: 800px;
-  margin: 0 auto;
-  margin-top: 50px;
-  border: 1px solid red;
+  width: 100%;
+  padding: 20px;
+
+  h1 {
+    padding-bottom: 50px;
+    font-size: 30px;
+    font-weight: bold;
+  }
 }
 
 .detail {
-  margin-bottom: 20%;
-  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
 
   .liStyle {
     display: flex;
+    align-items: center;
   }
 
   .item {
-    margin-right: 10px;
-    border: 1px solid yellow;
+    width: 100px;
+    padding: 12px 18px;
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: colors.$GRAYD;
+    text-align: center;
+    background-color: colors.$NAV_BLACK;
+    border-radius: 50px;
   }
 
   .data {
-    border: 1px solid green;
+    padding: 15px;
+    font-size: 15px;
   }
 }
 
 .chartWrapper {
   display: flex;
+  justify-content: center;
 
-  .chart {
-    width: 400px;
-    height: 400px;
-    background-color: aqua;
-    border: 1px solid black;
+  .chartTitle {
+    width: 100px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid colors.$NAV_BLACK;
+  }
+
+  .heartChart {
+    max-width: 400px;
+    height: 500px;
+    margin-right: 50px;
+  }
+
+  .stepChart {
+    max-width: 400px;
+    height: 500px;
   }
 }

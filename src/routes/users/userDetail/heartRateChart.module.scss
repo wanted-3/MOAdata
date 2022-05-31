@@ -1,8 +1,17 @@
+@use 'styles/constants/colors';
+
 .chart {
   width: 100%;
-  height: 100%;
-<<<<<<< HEAD
-=======
-  margin-bottom: 10px;
->>>>>>> 1e749575745fa1d1972af60e5e3c76c85e572f14
+  max-height: 400px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+}
+
+.chartDetail {
+  padding: 15px 10px;
+  font-size: 18px;
+
+  :nth-child(1) {
+    padding-bottom: 10px;
+  }
 }
