@@ -3,29 +3,43 @@
 .wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  padding: 10px;
+  width: 800px;
 
   .title {
-    font-size: 16px;
+    width: 80px;
+    padding: 10px;
+    text-align: center;
   }
-
   .dateInputs {
     display: flex;
-    background-color: saddlebrown;
-
+    // justify-content: space-between;
+    // width: 600px;
+    align-items: center;
     .dateInput {
-      width: 80px !important;
+      width: 200px;
+      height: 24px;
       font-size: 16px;
-      border: 1px solid black;
+      border: 1px solid colors.$NAV_BLACK;
+      border-radius: 5px;
+      padding-left: 10px;
+    }
+    span {
+      margin-left: 20px;
+      margin-right: 20px;
     }
   }
 
   .buttons {
+    margin-left: 30px;
     .btn {
       width: 50px;
-      padding: 2px 0;
-      margin-left: 10px;
-      background-color: blue;
+      height: 24px;
+      align-items: center;
+      margin: 5px;
+      color: colors.$WHITE;
+      background-color: colors.$BLUE;
+      border-radius: 4px;
     }
   }
 }

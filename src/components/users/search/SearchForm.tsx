@@ -81,22 +81,20 @@ const SearchForm = () => {
   // }, [onSearchSubmit])
   return (
     <div className={styles.searchForm}>
-      <div className={styles.formContainer}>
-        <form className={styles.form} onSubmit={onSearchSubmit}>
-          <div className={styles.inputs}>
+      <div className={styles.inputs}>
+        <div className={styles.formWrapper}>
+          <form className={styles.form} onSubmit={onSearchSubmit}>
             <label htmlFor='loginIdInput'>로그인ID</label>
             <input id='loginIdInput' ref={inputIDRef} type='text' onChange={handleIdChange} value={loginId} />
             <label htmlFor='memberIdInput'>회원번호</label>
             <input id='memberIdInput' type='text' onChange={handleMemberIdChange} value={memberSeq} />
-          </div>
-          <button type='submit' className={styles.submitBtn}>
-            검색
-          </button>
-        </form>
-        <div className={styles.datePicker}>
-          <Datepicker dispatchUserDate={setUserDate} />
+            <button type='submit' className={styles.submitBtn}>
+              검색
+            </button>
+          </form>
+          <Button title='필터초기화' onClick={onReset} />
         </div>
-        <Button title='필터초기화' onClick={onReset} />
+        <Datepicker dispatchUserDate={setUserDate} />
       </div>
 
       <SearchResult userData={filteredData} />

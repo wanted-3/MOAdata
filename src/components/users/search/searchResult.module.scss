@@ -34,7 +34,14 @@
     width: 80px;
     height: 40px;
     border-radius: 10px;
+    font-weight: bold;
+    color: colors.$NAV_BLACK;
     background-color: colors.$HOVER_GRAY;
+    &:hover {
+      color: colors.$WHITE;
+      font-weight: bold;
+      background-color: colors.$NAV_BLACK;
+    }
   }
 
   .pagination {

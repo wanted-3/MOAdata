@@ -1,7 +1,11 @@
 @use 'styles/constants/colors';
 
 .button {
+  display: flex;
+  align-items: center;
   padding: 10px;
+  height: 40px;
+  width: 80px;
   border-radius: 10px;
   background-color: colors.$BLUE;
   color: colors.$GRAYE;
