@@ -64,7 +64,7 @@ const SearchResult = ({ userData }: Props) => {
                 <td>{date}</td>
                 <td>{id}</td>
                 <td>
-                  <Button title='관리' onClick={handleClick} size='small' />
+                  <Button title='관리' onClick={handleClick} size='small' value={memberSeq} />
                 </td>
               </tr>
             )

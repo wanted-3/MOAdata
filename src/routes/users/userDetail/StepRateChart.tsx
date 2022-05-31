@@ -21,16 +21,17 @@ const StepRateChart = () => {
   const { userId } = useParams()
 
   return (
-    <div>
-      <div>
+    <>
+      <div className={styles.chart}>
         <VictoryChart
           animate={{
             duration: 2000,
             easing: 'bounce',
           }}
-          domainPadding={40}
-          height={500}
+          domainPadding={{ y: 40 }}
+          height={400}
           width={500}
+          padding={{ left: 70, bottom: 40, top: 50, right: 50 }}
         >
           <VictoryAxis
             tickFormat={(t, index) => {
@@ -43,7 +44,7 @@ const StepRateChart = () => {
       </div>
       <p>날짜</p>
       <p>총{cn1}걸음</p>
-    </div>
+    </>
   )
 }
 

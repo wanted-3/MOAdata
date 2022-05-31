@@ -8,31 +8,10 @@ import { getHeartRateApi, getStepRateApi } from 'services/getData'
 import { filter, filterTemp2, heart, step } from 'states/userData'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import Datepicker from 'components/common/Datepicker'
-import { useEffect } from 'react'
 
 const title = ['로그인', '회원번호', '가입일시']
 
 const UserDetail = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const { userId } = useParams()
-
-  const preventReload = () => {
-    navigate('/users')
-  }
-  useEffect(() => {
-    window.addEventListener('beforeunload', preventReload)
-  }, [])
-
-  // useEffect(() => {
-  //   navigate('/users')
-  // }, [])
-  // useMount(() => {
-  //   getHeartRateApi(136)?.then((res) => res.map((item) => dispatch(heart(item.data))))
-  //   getStepRateApi(136)?.then((res) => res.map((item) => dispatch(step(item.data))))
-  // })
-  // eslint-disable-next-line no-restricted-globals
   return (
     <div className={styles.detailWrapper}>
       <h1>회원 상세 정보</h1>
