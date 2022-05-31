@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import dayjs from 'dayjs'
 import type { RootState } from '.'
 
@@ -12,6 +12,11 @@ interface UserState {
       heartRate: any[]
       step: any[]
     }
+    userInfo: {
+      id: string
+      date: string
+      member_seq: number
+    }[]
   }
 }
 
@@ -25,6 +30,23 @@ const INITIAL_STATE: UserState = {
       heartRate: [],
       step: [],
     },
+    userInfo: [
+      {
+        id: 'asdf',
+        date: '2022-05-28 12:12:12',
+        member_seq: 136,
+      },
+      {
+        id: 'zxcv',
+        date: '2022-05-30 10:24:45',
+        member_seq: 328,
+      },
+      {
+        id: 'qwer',
+        date: '2022-04-01 13:13:13',
+        member_seq: 380,
+      },
+    ],
   },
 }
 
@@ -63,13 +85,20 @@ const systemSlice = createSlice({
         )
       })
     },
+
+    userInfoTemp: (state, action) => {
+      state.value.userInfo = state.value.userInfo.filter((item) => item.member_seq === action.payload)
+
+      // console.log(state.value.userInfo)
+    },
+
     reset: (state) => {
       state.value = INITIAL_STATE.value
     },
   },
 })
 
-export const { heart, step, filter, filterTemp2, reset } = systemSlice.actions
+export const { heart, step, filter, filterTemp2, userInfoTemp, reset } = systemSlice.actions
 
 export default systemSlice.reducer
 

@@ -20,7 +20,7 @@ const HeartRateChart = () => {
 
   const maxima = useMemo(() => {
     return Math.floor(
-      Tdata.map((item) => item.y).reduce((acc, cur) => {
+      Tdata.map((item) => item.y).reduce((acc: number, cur: number) => {
         return acc + cur
       }, 0) / Tdata.length
     )
@@ -52,7 +52,7 @@ const HeartRateChart = () => {
         />
       </VictoryChart>
 
-      <p>평균 {maxima} bpm</p>
+      <p>평균 {maxima || 0} bpm</p>
     </div>
   )
 }
