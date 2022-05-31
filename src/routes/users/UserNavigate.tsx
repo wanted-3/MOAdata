@@ -13,11 +13,17 @@ const UserNavigate = () => {
   return (
     <div className={styles.userNavigate}>
       <div className={styles.titleWrap}>
-        <h1>홈</h1>
+        <span>홈</span>
+        <span>{'>'}</span>
         <button type='button' onClick={handleClick}>
-          회원 관리
+          <span>회원 관리</span>
         </button>
-        {userId && <div>회원 상세</div>}
+        {userId && (
+          <>
+            <span>{'>'}</span>
+            <span>회원 상세</span>
+          </>
+        )}
       </div>
       <Outlet />
     </div>
