@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { IData } from 'types/userData.d'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { getHeartRateApi, getStepRateApi } from 'services/getData'
-import { heart, step, reset } from 'states/userData'
+import { heart, step, reset, userInfoTemp } from 'states/userData'
 
 interface Props {
   userData: IData[]
@@ -33,6 +33,7 @@ const SearchResult = ({ userData }: Props) => {
 
     getHeartRateApi(numberId)?.then((res) => res.map((item) => dispatch(heart(item.data))))
     getStepRateApi(numberId)?.then((res) => res.map((item) => dispatch(step(item.data))))
+    dispatch(userInfoTemp(numberId))
     navigate(`${numberId}`)
   }
 
