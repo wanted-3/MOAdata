@@ -1,1 +1,17 @@
 @use '/src/styles/constants/colors';
+
+.chart {
+  width: 100%;
+  max-height: 400px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+}
+
+.chartDetail {
+  padding: 15px 10px;
+  font-size: 18px;
+
+  :nth-child(1) {
+    padding-bottom: 10px;
+  }
+}

@@ -31,15 +31,15 @@ const UserDetail = () => {
       </div>
       <div className={styles.chartWrapper}>
         <div>
-          <h2>심박수or걸음수</h2>
-          <div className={styles.chart}>
+          <h2 className={styles.chartTitle}>심박수</h2>
+          <div className={styles.heartChart}>
             <HeartRateChart />
             <Datepicker dispatchUserDate={getFilteredHeartRateData} />
           </div>
         </div>
         <div>
-          <h2>걸음수</h2>
-          <div className={styles.chart}>
+          <h2 className={styles.chartTitle}>걸음수</h2>
+          <div className={styles.stepChart}>
             <StepRateChart />
             <Datepicker dispatchUserDate={getFilteredStepData} />
           </div>
