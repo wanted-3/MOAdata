@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { setAccessUserTF, setLoginID } from 'states/accessUser'
 
 import styles from './login.module.scss'
+import { cx } from 'styles'
 import LOGO from 'assets/logo-w.png'
 
 const TEMPORARY = [
@@ -31,36 +32,26 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  const handleCheckId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.currentTarget.value
+  const handleinvalid = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const targetValue = e.currentTarget.value
+    const targetName = e.currentTarget.name
     setShowPopup(false)
     setShowTxt(false)
-    TEMPORARY.filter((a) => {
-      if (a.id === target) {
-        setCheckId(true)
-        setLogin(target)
-      }
-      return false
-    })
-  }
-  const handleCheckPw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.currentTarget.value
-
-    TEMPORARY.filter((a) => {
-      if (a.pw === target) {
-        setCheckPw(true)
-      }
-      return false
-    })
+    if (targetName === 'id') {
+      setLogin(targetValue)
+      TEMPORARY.map((item) => item.id === targetValue && setCheckId(true))
+    } else if (targetName === 'pw') {
+      TEMPORARY.map((item) => item.pw === targetValue && setCheckPw(true))
+    }
   }
 
-  const setAccessUser = () => {
-    if (checkId === true && checkPw === true) {
+  const handleSubmitLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (checkId && checkPw) {
       dispatch(setAccessUserTF(checkId))
       dispatch(setLoginID(login))
       navigate('/home')
-    }
-    if (!checkId || !checkPw) {
+    } else {
       setShowPopup(true)
       setShowTxt(true)
     }
@@ -69,29 +60,41 @@ const Login = () => {
   const handlePopup = () => {
     setShowPopup(false)
   }
+
   return (
     <div className={styles.loginWrap}>
-      <div className={`${styles.popup} ${showPopup ? styles.popupOK : ''}`}>
+      <div className={cx(styles.popup, { [styles.popupOK]: showPopup })}>
         일치하는 아이디, 비밀번호가 없습니다
         <button type='button' onClick={handlePopup}>
           X
         </button>
       </div>
+
       <div className={styles.formWrap}>
-        <form className={styles.loginForm}>
+        <form className={styles.loginForm} onSubmit={handleSubmitLogin}>
           <img src={LOGO} alt='모아테이타 로고' />
           <div className={styles.inputWrap}>
             <div className={styles.inputBox}>
-              <input type='text' placeholder='아이디 입력' className={styles.idInput} onChange={handleCheckId} />
+              <input
+                type='text'
+                placeholder='아이디 입력'
+                className={styles.idInput}
+                name='id'
+                onChange={handleinvalid}
+              />
             </div>
             <div className={styles.inputBox}>
-              <input type='password' placeholder='비밀번호 입력' className={styles.pwInput} onChange={handleCheckPw} />
+              <input
+                type='password'
+                placeholder='비밀번호 입력'
+                className={styles.pwInput}
+                name='pw'
+                onChange={handleinvalid}
+              />
             </div>
-            <p className={`${styles.invalid} ${showTxt ? styles.invalidOK : ''}`}>
-              일치하는 아이디, 비밀번호가 없습니다.
-            </p>
+            <p className={cx(styles.invalid, { [styles.invalidOK]: showTxt })}>일치하는 아이디, 비밀번호가 없습니다.</p>
           </div>
-          <button type='button' className={styles.loginBtn} disabled={!checkId} onClick={setAccessUser}>
+          <button type='submit' className={styles.loginBtn}>
             로그인 하기
           </button>
         </form>
