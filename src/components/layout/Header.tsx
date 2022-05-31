@@ -18,7 +18,7 @@ const Header = () => {
       <h2 className={styles.title}>백 오피스</h2>
       <div className={styles.userWrap}>
         <h3>{id}</h3>
-        <Button title='로그아웃' onClick={handleLogout} />
+        <Button title='로그아웃' onClick={handleLogout} size='big' />
       </div>
     </header>
   )

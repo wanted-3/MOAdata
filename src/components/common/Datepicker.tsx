@@ -9,6 +9,7 @@ import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { useAppSelector } from 'hooks/useAppSelector'
 import { getReset, setReset } from 'states/dateData'
 import { END_DATE, formatedDate, MIN_DATE, START_DATE, TODAY, WEEK } from 'utils/date'
+import Button from './Button'
 
 interface TempProps {
   dispatchUserDate: ActionCreatorWithPayload<any, string>
@@ -84,15 +85,9 @@ const Datepicker = ({ dispatchUserDate }: TempProps) => {
         />
       </div>
       <div className={styles.buttons}>
-        <button type='button' className={styles.btn} onClick={handleToday}>
-          오늘
-        </button>
-        <button type='button' className={styles.btn} onClick={handleWeek}>
-          1주일
-        </button>
-        <button type='button' className={styles.btn} onClick={handleTotal}>
-          전체
-        </button>
+        <Button onClick={handleToday} title='오늘' size='medium' />
+        <Button onClick={handleWeek} title='1주' size='medium' />
+        <Button onClick={handleTotal} title='전체' size='medium' />
       </div>
     </div>
   )

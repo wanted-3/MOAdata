@@ -96,7 +96,7 @@ const SearchForm = () => {
         <div className={styles.datePicker}>
           <Datepicker dispatchUserDate={setUserDate} />
         </div>
-        <Button title='필터초기화' onClick={onReset} />
+        <Button title='필터초기화' onClick={onReset} size='big' />
       </div>
 
       <SearchResult userData={filteredData} />

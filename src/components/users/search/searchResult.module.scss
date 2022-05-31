@@ -1,16 +1,18 @@
 @use '/src/styles/constants/colors';
+
 .searchResult {
   height: 500px;
-  background-color: colors.$WHITE;
   padding: 20px;
+  background-color: colors.$WHITE;
   border-radius: 10px;
+
   > p {
     padding: 10px;
 
     > mark {
+      font-weight: bold;
       color: colors.$RED;
       background-color: transparent;
-      font-weight: bold;
     }
   }
 
@@ -19,22 +21,17 @@
     font-size: 14px;
     text-align: center;
     background-color: colors.$BACKGROUND;
+
     thead {
-      border-bottom: 1.5px colors.$HOVER_GRAY solid;
-      font-weight: bold;
       font-size: 16px;
+      font-weight: bold;
+      border-bottom: 1.5px colors.$HOVER_GRAY solid;
     }
 
     th,
     td {
       padding: 10px;
     }
-  }
-  .detailBtn {
-    width: 80px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: colors.$HOVER_GRAY;
   }
 
   .pagination {

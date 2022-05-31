@@ -5,6 +5,7 @@ import { IData } from 'types/userData.d'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { getHeartRateApi, getStepRateApi } from 'services/getData'
 import { heart, step, reset } from 'states/userData'
+import Button from 'components/common/Button'
 
 interface Props {
   userData: IData[]
@@ -63,9 +64,7 @@ const SearchResult = ({ userData }: Props) => {
                 <td>{date}</td>
                 <td>{id}</td>
                 <td>
-                  <button type='button' onClick={handleClick} value={memberSeq}>
-                    관리
-                  </button>
+                  <Button title='관리' onClick={handleClick} size='small' />
                 </td>
               </tr>
             )
