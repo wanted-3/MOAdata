@@ -1,39 +1,34 @@
 import styles from './userDetail.module.scss'
 import 'react-datepicker/dist/react-datepicker.css'
-import { useId } from 'react'
+import { useId, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { useMount } from 'react-use'
 import StepRateChart from './StepRateChart'
 import HeartRateChart from './HeartRateChart'
-import { getHeartRateApi, getStepRateApi } from 'services/getData'
-import { filter, filterTemp2, heart, step } from 'states/userData'
-import { useAppDispatch } from 'hooks/useAppDispatch'
+import { filter, filterTemp2, getUserData } from 'states/userData'
 import Datepicker from 'components/common/Datepicker'
-
-const title = ['로그인', '회원번호', '가입일시']
+import { useAppSelector } from 'hooks/useAppSelector'
+import UserInfoItem from './UserInfoItem'
 
 const UserDetail = () => {
-  const dispatch = useAppDispatch()
   const { userId } = useParams()
+  const getId = useAppSelector(getUserData)
 
-  // useMount(() => {
-  //   getHeartRateApi(136)?.then((res) => res.map((item) => dispatch(heart(item.data))))
-  //   getStepRateApi(136)?.then((res) => res.map((item) => dispatch(step(item.data))))
-  // })
+  const userInformation = useMemo(() => {
+    return [
+      { title: '로그인', value: getId.userInfo[0].id },
+      { title: '회원번호', value: getId.userInfo[0].member_seq },
+      { title: '가입일시', value: getId.userInfo[0].date },
+    ]
+  }, [getId.userInfo])
 
   return (
     <div className={styles.detailWrapper}>
       <h1>회원 상세 정보</h1>
       <div className={styles.detail}>
         <ul>
-          {title.map((item) => {
-            return (
-              <li className={styles.liStyle} key={`Mem_info-${item}`}>
-                <div className={styles.item}>{item}</div>
-                <div className={styles.data}>data</div>
-              </li>
-            )
-          })}
+          {userInformation.map((item) => (
+            <UserInfoItem key={`Mem_info-${item.value}`} item={item} />
+          ))}
         </ul>
       </div>
       <div className={styles.chartWrapper}>
