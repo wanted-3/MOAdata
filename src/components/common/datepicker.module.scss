@@ -3,7 +3,7 @@
 .wrap {
   display: flex;
   align-items: center;
-  width: 800px;
+
   .title {
     width: 80px;
     padding: 10px;
@@ -31,5 +31,9 @@
       margin-left: 20px;
       margin-right: 20px;
     }
+  }
+
+  .buttons {
+    margin-left: 20px;
   }
 }

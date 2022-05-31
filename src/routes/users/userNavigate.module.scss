@@ -2,12 +2,10 @@
 
 .userNavigate {
   .titleWrap {
-    display: flex;
-    padding-left: 30px;
-  }
-  span {
-    align-items: center;
-    padding: 10px;
-    font-size: 18px;
+    padding: 10px 0 0 30px;
+    span {
+      padding: 0 10px;
+      font-size: 18px;
+    }
   }
 }

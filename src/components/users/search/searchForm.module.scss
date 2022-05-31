@@ -20,13 +20,14 @@
   .formWrapper {
     display: flex;
     width: 900px;
-    padding: 10px;
-    // justify-content: center;
+    margin-bottom: 20px;
     align-items: center;
     flex-wrap: wrap;
-    flex-direction: row; /*수평 정렬*/
+    flex-direction: row;
   }
-
+  .datePickerWrap {
+    width: 900px;
+  }
   .form {
     label {
       text-align: center;

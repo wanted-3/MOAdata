@@ -32,7 +32,7 @@
     width: 5px;
     height: 80%;
     content: '';
-    background-color: colors.$RED_WARN;
+    background-color: colors.$RED;
     border-radius: 5px;
   }
 
@@ -89,7 +89,7 @@
       bottom: 0;
       font-size: 14px;
       font-weight: bold;
-      color: colors.$RED_WARN;
+      color: colors.$RED;
       opacity: 0;
       transition: all 0.3s;
 
@@ -133,9 +133,9 @@
     transition: all 0.5s ease-in-out;
 
     &:hover {
-      color: colors.$BLACK;
-      background-color: colors.$GREEN;
-      border: 1px solid colors.$GREEN;
+      color: colors.$WHITE;
+      background-color: colors.$BLUE;
+      border: 1px solid colors.$BLUE;
     }
 
     &:disabled:hover {

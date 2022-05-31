@@ -53,7 +53,6 @@ const SearchResult = ({ userData }: SearchResultProps) => {
       <p>
         전체 총 <mark>{numOfPeople}</mark> 명의 회원이 검색되었습니다.
       </p>
-      {/* TODO:rafactoring */}
       <table className={styles.table}>
         <thead>
           <tr>

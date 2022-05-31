@@ -3,6 +3,7 @@ import { useMount } from 'react-use'
 
 import { useAppSelector } from 'hooks/useAppSelector'
 import { getAccessState } from 'states/accessUser'
+import UserNavigate from 'routes/users/UserNavigate'
 
 const Home = () => {
   const userState = useAppSelector(getAccessState)
@@ -14,7 +15,11 @@ const Home = () => {
     navigate('/')
   })
 
-  return <div>home</div>
+  return (
+    <div>
+      <UserNavigate />
+    </div>
+  )
 }
 
 export default Home

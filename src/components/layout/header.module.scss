@@ -6,11 +6,12 @@
   justify-content: space-between;
   width: 100%;
   padding: 20px;
-  background-color: colors.$BACKGROUND;
+  background-color: colors.$BLUE;
 
   .title {
     font-size: 2rem;
-    color: colors.$NAV_BLACK;
+    color: colors.$WHITE;
+    font-weight: bold;
   }
 
   .userWrap {
@@ -19,7 +20,7 @@
 
     h3 {
       padding-right: 10px;
-      // TODO:글자색
+      color: colors.$WHITE;
     }
   }
 }

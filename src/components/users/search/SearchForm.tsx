@@ -73,17 +73,17 @@ const SearchForm = () => {
 
             <label htmlFor='memberIdInput'>회원번호</label>
             <input id='memberIdInput' type='text' onChange={handleMemberIdChange} value={memberSeq} />
-
-            <button type='submit' className={styles.submitBtn}>
+            <Button title='검색' size='big' />
+            {/* <button type='submit' className={styles.submitBtn}>
               검색
-            </button>
+            </button> */}
           </form>
-
-          <Datepicker dispatchUserDate={setUserDate} />
-          <Button title='필터초기화' onClick={onReset} size='small' />
+          <div className={styles.datePickerWrap}>
+            <Datepicker dispatchUserDate={setUserDate} />
+          </div>
         </div>
+        <Button title='필터초기화' onClick={onReset} size='small' />
       </div>
-
       <SearchResult userData={filteredUserData} />
     </div>
   )

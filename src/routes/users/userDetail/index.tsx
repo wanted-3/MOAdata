@@ -34,14 +34,18 @@ const UserDetail = () => {
           <h2 className={styles.chartTitle}>심박수</h2>
           <div className={styles.heartChart}>
             <HeartRateChart />
-            <Datepicker dispatchUserDate={getFilteredHeartRateData} />
+            <div className={styles.dataPickerWrap}>
+              <Datepicker dispatchUserDate={getFilteredHeartRateData} />
+            </div>
           </div>
         </div>
         <div>
           <h2 className={styles.chartTitle}>걸음수</h2>
           <div className={styles.stepChart}>
             <StepRateChart />
-            <Datepicker dispatchUserDate={getFilteredStepData} />
+            <div className={styles.dataPickerWrap}>
+              <Datepicker dispatchUserDate={getFilteredStepData} />
+            </div>
           </div>
         </div>
       </div>
