@@ -1,3 +1,5 @@
+@use 'styles/mixins/responsive';
+
 .userDetailWrapper {
   display: flex;
   flex-direction: column;
@@ -10,13 +12,15 @@
     font-weight: bold;
   }
 
+  .dataPickerWrap {
+    width: 400px;
+  }
+}
+
+@include responsive.after(1040px) {
   .chartWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-  }
-
-  .dataPickerWrap {
-    width: 400px;
   }
 }

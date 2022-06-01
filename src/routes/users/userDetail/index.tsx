@@ -30,11 +30,14 @@ const UserDetail = () => {
         ))}
       </ul>
       <div className={styles.chartWrapper}>
-        <HeartRateChart />
-        <StepRateChart />
-
-        <Datepicker dispatchUserDate={getFilteredHeartRateData} column />
-        <Datepicker dispatchUserDate={getFilteredStepData} column />
+        <div className={styles.heartRateChart}>
+          <HeartRateChart />
+          <Datepicker dispatchUserDate={getFilteredHeartRateData} column />
+        </div>
+        <div className={styles.stepDataChart}>
+          <StepRateChart />
+          <Datepicker dispatchUserDate={getFilteredStepData} column />
+        </div>
       </div>
     </div>
   )

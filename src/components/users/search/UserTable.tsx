@@ -34,11 +34,11 @@ const UserTable = ({ userData, page }: UserTableProps) => {
   }
 
   const currentPageContents = useMemo(() => {
-    return userData.slice(offset, offset + 10)
+    return userData.slice(offset, offset + 5)
   }, [offset, userData])
 
   useEffect(() => {
-    setOffset((page - 1) * 10)
+    setOffset((page - 1) * 5)
   }, [page])
 
   return (

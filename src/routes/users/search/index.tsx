@@ -1,11 +1,7 @@
 import SearchForm from 'components/users/search/SearchForm'
 
 const Search = () => {
-  return (
-    <div>
-      <SearchForm />
-    </div>
-  )
+  return <SearchForm />
 }
 
 export default Search

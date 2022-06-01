@@ -1,7 +1,8 @@
-@use '/src/styles/constants/colors';
+@use 'styles/constants/colors';
 
 .wrap {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
 
@@ -16,7 +17,6 @@
     align-items: center;
 
     .dateInput {
-      width: 200px;
       height: 24px;
       padding-left: 10px;
       font-size: 16px;

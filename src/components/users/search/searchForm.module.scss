@@ -1,16 +1,15 @@
-@use 'src/styles/constants/colors';
+@use 'styles/constants/colors';
+@use 'styles/mixins/responsive';
 
 .searchForm {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 1000px;
   padding: 30px;
 
   .dataInputWrap {
     display: flex;
     flex-direction: column;
-    width: 100%;
     padding: 20px;
     margin-bottom: 10px;
     background-color: colors.$WHITE;
@@ -21,12 +20,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    width: 900px;
     margin-bottom: 20px;
-  }
-
-  .datePickerWrap {
-    width: 900px;
   }
 
   .form {
@@ -55,5 +49,15 @@
     color: colors.$WHITE;
     background-color: colors.$BLUE;
     border-radius: 10px;
+  }
+}
+
+@include responsive.after(1040px) {
+  .formWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 900px;
+    margin-bottom: 20px;
   }
 }

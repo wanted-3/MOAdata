@@ -1,8 +1,8 @@
-@use 'src/styles/constants/colors';
+@use 'styles/constants/colors';
+@use 'styles/mixins/responsive';
 
 .navBar {
-  width: 200px;
-  min-width: 200px;
+  min-width: 150px;
   background-color: colors.$NAV_BLACK;
 
   ul {
@@ -19,4 +19,10 @@
 
 .clicked {
   font-weight: 700;
+}
+
+@include responsive.after(1040px) {
+  .navBar {
+    width: 200px;
+  }
 }
