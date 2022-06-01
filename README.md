@@ -103,14 +103,13 @@ JSON파일을 public/data에 저장하고 axios를 사용하여 데이터를 불
 
 # 📸 구현 결과
 
-
-|뷰|달력 선택|
+|로그인|회원 관리|
 |:---:|:---:|
-|<img src="https://user-images.githubusercontent.com/62868465/170338166-4867b770-146a-4e1a-a252-b00b67194f48.gif" width="350"/>|<img src="https://user-images.githubusercontent.com/62868465/170338270-55ab85dc-cc6b-4db7-b47a-47b3c1965e18.gif" width="350"/>|
+|<img src="https://user-images.githubusercontent.com/63532503/171318084-04b2c5cd-9873-4ad0-847f-3257f69e6e81.gif" width="350"/>|<img src="https://user-images.githubusercontent.com/63532503/171318274-88ae890e-e991-4fee-9451-6a4f752ebe9c.gif" width="350"/>|
 
-|라인 그래프|차트 그래프|
+|회원 상세| |
 |:---:|:---:|
-<img src="https://user-images.githubusercontent.com/62868465/170338337-b67619f0-476d-413d-9f75-ba0a21d6247d.gif" width="350"/>|<img src="https://user-images.githubusercontent.com/62868465/170338395-161d8375-e1f4-4cdb-ae32-f5dcf65666ba.gif" width="350"/>|
+<img src="https://user-images.githubusercontent.com/63532503/171318347-f9982117-09e1-434e-88d8-41b7540555df.gif" width="350"/>| |
 
 #  ✏️ 어려웠던 점
 
