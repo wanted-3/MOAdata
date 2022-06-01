@@ -5,6 +5,8 @@ import { useAppSelector } from 'hooks/useAppSelector'
 import { getAccessState } from 'states/accessUser'
 import UserNavigate from 'routes/users/UserNavigate'
 
+import styles from './home.module.scss'
+
 const Home = () => {
   const userState = useAppSelector(getAccessState)
   const navigate = useNavigate()
@@ -18,6 +20,7 @@ const Home = () => {
   return (
     <div>
       <UserNavigate />
+      <h1 className={styles.title}>홈</h1>
     </div>
   )
 }

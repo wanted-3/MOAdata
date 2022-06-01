@@ -15,7 +15,7 @@ const UserDetail = () => {
 
   const userInformation = useMemo(() => {
     return [
-      { title: '로그인', value: getId.userInfo[0].id },
+      { title: '로그인 ID', value: getId.userInfo[0].id },
       { title: '회원번호', value: getId.userInfo[0].member_seq },
       { title: '가입일시', value: getId.userInfo[0].date },
     ]
