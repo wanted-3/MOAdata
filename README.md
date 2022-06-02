@@ -109,7 +109,7 @@ JSON파일을 public/data에 저장하고 axios를 사용하여 데이터를 불
 
 |회원 상세| |
 |:---:|:---:|
-<img src="https://user-images.githubusercontent.com/63532503/171318347-f9982117-09e1-434e-88d8-41b7540555df.gif" width="350"/>| |
+<img src="https://user-images.githubusercontent.com/63532503/171318347-f9982117-09e1-434e-88d8-41b7540555df.gif" width="350"/>|
 
 #  ✏️ 어려웠던 점
 
