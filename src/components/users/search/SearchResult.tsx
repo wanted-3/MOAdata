@@ -11,8 +11,9 @@ interface SearchResultProps {
 const SearchResult = ({ userData }: SearchResultProps) => {
   const [page, setPage] = useState(1)
 
+  const COUNT_PER_PAGE = 5
   const numOfPeople = userData.length
-  const totalPage = Math.ceil(numOfPeople / 10)
+  const totalPage = Math.ceil(numOfPeople / COUNT_PER_PAGE)
 
   const handleNextPage = () => {
     setPage((prev) => prev + 1)
@@ -28,7 +29,7 @@ const SearchResult = ({ userData }: SearchResultProps) => {
         전체 총 <mark>{numOfPeople}</mark> 명의 회원이 검색되었습니다.
       </p>
 
-      <UserTable userData={userData} page={page} />
+      <UserTable userData={userData} page={page} countPerPage={COUNT_PER_PAGE} />
 
       <div className={styles.pagination}>
         <button className={styles.paginationBtn} type='button' onClick={handlePrevPage} disabled={page === 1}>

@@ -12,9 +12,10 @@ import Button from 'components/common/Button'
 interface UserTableProps {
   userData: IData[]
   page: number
+  countPerPage: number
 }
 
-const UserTable = ({ userData, page }: UserTableProps) => {
+const UserTable = ({ userData, page, countPerPage }: UserTableProps) => {
   const dispatch = useAppDispatch()
 
   const [offset, setOffset] = useState(0)
@@ -34,12 +35,12 @@ const UserTable = ({ userData, page }: UserTableProps) => {
   }
 
   const currentPageContents = useMemo(() => {
-    return userData.slice(offset, offset + 5)
-  }, [offset, userData])
+    return userData.slice(offset, offset + countPerPage)
+  }, [offset, userData, countPerPage])
 
   useEffect(() => {
-    setOffset((page - 1) * 5)
-  }, [page])
+    setOffset((page - 1) * countPerPage)
+  }, [page, countPerPage])
 
   return (
     <table className={styles.table}>
